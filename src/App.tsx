@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { lazy, Suspense } from 'react';
 
-function App() {
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import Navbar from 'Components/Navbar';
+import Sidebar from 'Components/Sidebar';
+
+const ToDo = lazy(() => import('Pages/ToDo'));
+const UnderConstruction = lazy(() => import('Pages/UnderConstruction'));
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="app-container">
+        <Sidebar />
+        <div className="page-container">
+          <Navbar />
+          <div className="page-wrapper">
+            <Suspense>
+              <Routes>
+                <Route path="/to-do" element={<ToDo />} />
+                <Route path="/finance" element={<UnderConstruction title="Finance" />} />
+                <Route path="/chats" element={<UnderConstruction title="Chats" />} />
+              </Routes>
+            </Suspense>
+          </div>
+        </div>
+      </div>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;

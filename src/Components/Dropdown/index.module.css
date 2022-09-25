@@ -1,0 +1,38 @@
+.container {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  display: none;
+  padding: var(--padding-s) var(--padding-l);
+  border-radius: 4px;
+  box-shadow: var(--box-shadow-m);
+  background-color: var(--color-light);
+}
+
+.small {
+  min-width: 120px;
+}
+
+.medium {
+  min-width: 180px;
+}
+
+.large {
+  min-width: 240px;
+}
+
+.auto {
+  min-width: fit-content;
+}
+
+.dropdown > * {
+  padding: var(--padding-m) 0;
+  font-size: 14px;
+}
+
+.dropdownOpen {
+  display: block;
+  right: 0;
+}

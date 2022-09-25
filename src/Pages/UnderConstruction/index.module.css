@@ -1,0 +1,22 @@
+.container {
+  height: calc(100vh - 112px - 2 * var(--padding-xxl) - var(--padding-l));
+  display: flex;
+  flex-direction: column;
+  gap: var(--padding-xl);
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-light);
+  border-radius: 8px;
+  position: relative;
+  width: 100%;
+}
+
+.lottie {
+  width: clamp(300px, 80%, 600px);
+  margin:  var(--padding-xxl) auto var(--padding-s);
+  overflow: hidden;
+}
+
+.title {
+  margin-bottom: var(--padding-l);
+}
