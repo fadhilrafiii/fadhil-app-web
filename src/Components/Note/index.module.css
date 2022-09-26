@@ -1,0 +1,22 @@
+.container {
+  margin: var(--padding-s) var(--padding-s) var(--padding-l);
+  min-height: 250px;
+  padding: var(--padding-l);
+  min-width: 250px;
+  box-shadow: 5px 5px 4px 0 var(--color-grey-dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.container  * {
+  font-family: Mali Neue, cursive;
+}
+
+.container :is(h1, h2, h3, h4, h5, h6) {
+  font-weight: 700;
+}
+
+.container :is(p, span) {
+  font-size: 14px;
+}

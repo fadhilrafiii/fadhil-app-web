@@ -1,0 +1,17 @@
+.container {
+  padding: var(--padding-xl);
+  border-radius: 8px;
+  background-color: var(--color-light);
+  box-shadow: var(--box-shadow-m);
+}
+
+.taskSlider {
+  width: 100%;
+  display: flex;
+  gap: var(--padding-m);
+  justify-content: flex-start;
+  overflow-x: scroll;
+}
+
+
+

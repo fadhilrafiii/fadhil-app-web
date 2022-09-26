@@ -1,7 +1,7 @@
 import { IconName } from './Icon';
 
-export type RouteType = {
+export interface RouteType {
   name: string;
   path: string;
   icon: IconName;
-};
+}

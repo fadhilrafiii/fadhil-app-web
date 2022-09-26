@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import Icon from 'Components/Icon';
 
-import { ROUTES } from 'Shared/Contants/Routes';
+import { HIDE_SIDEBAR_ROUTES, ROUTES } from 'Shared/Contants/Routes';
 import { RouteType } from 'Shared/Types/Route';
 
 import styles from './index.module.css';
@@ -13,12 +13,21 @@ const Sidebar = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
+  const classes = [styles.container];
+
   const actionClickMenu = (path: string) => {
     navigate(path);
   };
 
+  const shouldHideNavbar = useMemo(
+    () => HIDE_SIDEBAR_ROUTES.find((path: string) => path === pathname),
+    [pathname],
+  );
+
+  if (shouldHideNavbar) classes.push(styles.containerHide);
+
   return (
-    <div className={styles.container}>
+    <div className={classes.join(' ')}>
       <div className={styles.header}>
         <img width={42} src="/logo-white.png" alt="Logo" />
         <div>

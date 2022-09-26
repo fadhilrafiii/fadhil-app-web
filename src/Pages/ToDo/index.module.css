@@ -1,0 +1,23 @@
+.subtitle {
+  color: var(--color-grey-dark);
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--padding-xl);
+}
+
+.contentHeader {
+  display: flex;
+  gap: var(--padding-xl);
+  flex-wrap: wrap;
+}
+
+.contentHeader > div {
+  width: calc(50% - var(--padding-xl) / 2);
+  min-width: 375px;
+  flex-grow: 1;
+}

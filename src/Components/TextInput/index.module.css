@@ -1,0 +1,20 @@
+.input {
+  padding: var(--padding-l);
+  outline: none;
+  border-radius: 4px;
+  border: 1.5px solid var(--color-grey-dark);
+  transition: border .5s;
+  font-size: 16px;
+}
+
+.input::placeholder {
+  color: var(--color-grey-dark);
+}
+
+.input:active, .input:focus {
+  border-color: var(--color-primary-light);
+}
+
+.isFullwidth {
+  width: 100%;
+}

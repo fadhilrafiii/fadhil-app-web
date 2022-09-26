@@ -1,0 +1,31 @@
+.loadingContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loadingContainer > div {
+  width: clamp(360px, 70%, 720px) !important;
+  padding: 64px;
+}
+
+.loadingText {
+  display: inline-block;
+  margin-top: calc(-1 * clamp(90px,  16vw, 180px));
+  animation-name: blink;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: .25;
+  }
+}

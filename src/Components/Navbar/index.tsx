@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+
+import { useLocation } from 'react-router-dom';
 
 import Dropdown, { DropdownSize } from 'Components/Dropdown';
 import Icon from 'Components/Icon';
 
+import { HIDE_NAVBAR_ROUTES } from 'Shared/Contants/Routes';
 import { Colors } from 'Shared/Types/Colors';
 import { IconName } from 'Shared/Types/Icon';
 
 import styles from './index.module.css';
 
 const Navbar = () => {
+  const { pathname } = useLocation();
+
+  const shouldHideNavbar = useMemo(
+    () => HIDE_NAVBAR_ROUTES.find((path: string) => path === pathname),
+    [pathname],
+  );
+
+  if (shouldHideNavbar) return null;
+
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Hi, Fadhil!</h2>

@@ -1,0 +1,31 @@
+.body {
+  min-height: 120px;
+  margin: var(--padding-l) 0;
+}
+
+.body * {
+  font-size: 14px;
+}
+
+.description {
+  margin-bottom: var(--padding-m);
+}
+
+.footer * {
+  font-size: 12px !important;
+}
+
+.bodyLastLine {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--padding-m);
+}
+
+.bodyLastLine * {
+  font-size: 13px !important;
+}
+
+.emptySubtask {
+  color: var(--color-grey-dark);
+  font-size: 12px;
+}

@@ -1,0 +1,77 @@
+.button {
+  padding: var(--padding-l);
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all .4s;
+  border-radius: 4px;
+}
+
+.primary {
+  border: 1.5px solid var(--color-primary);
+}
+
+.primary.filled {
+  color: var(--color-light);
+  background-color: var(--color-primary);
+}
+
+.primary.filled:hover {
+  background-color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+}
+
+.primary.outlined {
+  background-color: var(--color-light);
+  color: var(--color-primary);
+}
+
+.primary.outlined:hover {
+  background-color: var(--color-grey);
+}
+
+.secondary {
+  border: 1.5px solid var(--color-secondary);
+}
+
+.secondary.filled {
+  color: var(--color-light);
+  background-color: var(--color-secondary);
+}
+
+.secondary.filled:hover {
+  background-color: var(--color-secondary-dark);
+  border-color: var(--color-secondary-dark);
+}
+
+.secondary.outlined {
+  background-color: var(--color-light);
+  color: var(--color-secondary);
+}
+
+.secondary.outlined:hover {
+  background-color: var(--color-grey);
+}
+
+.destructive {
+  border: 1.5px solid var(--color-destructive);
+}
+
+.destructive.filled {
+  color: var(--color-light);
+  background-color: var(--color-destructive);
+}
+
+.destructive.filled:hover {
+  background-color: var(--color-destructive-dark);
+  border-color: var(--color-destructive-dark);
+}
+
+.destructive.outlined {
+  background-color: var(--color-light);
+  color: var(--color-destructive);
+}
+
+.destructive.outlined:hover {
+  background-color: var(--color-grey);
+}

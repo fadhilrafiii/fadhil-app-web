@@ -2,6 +2,10 @@
   position: relative;
 }
 
+.dropdownButton {
+  cursor: pointer;
+}
+
 .dropdown {
   position: absolute;
   display: none;

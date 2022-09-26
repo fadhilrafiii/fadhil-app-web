@@ -1,6 +1,9 @@
 import { IconName } from 'Shared/Types/Icon';
 import { RouteType } from 'Shared/Types/Route';
 
+export const HIDE_SIDEBAR_ROUTES: string[] = ['/', '/register'];
+export const HIDE_NAVBAR_ROUTES: string[] = ['/', '/register'];
+
 export const ROUTES: RouteType[] = [
   {
     path: '/to-do',

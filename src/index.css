@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Lato:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Mali:wght@400;500;600;700&family=Lato:wght@300;400;500;600&display=swap');
 
 :root {
   /* font-family */
@@ -12,11 +12,14 @@
   --color-secondary: rgba(89,113,226,1);
   --color-secondary-dark: rgba(47,44,113,1);
   --color-secondary-light: rgb(184,193,235);
-  --color-destructive: rgb(160, 0, 0);
+  --color-destructive: rgb(210, 0, 0);
+  --color-destructive-dark: rgb(160, 0, 0);
   --color-light: white;
   --color-dark: rgb(54, 54, 54);
   --color-grey: rgb(240, 240, 240);
   --color-grey-dark: rgb(135, 135, 135);
+  --color-success: rgb(74, 147, 74);
+  --color-warning: rgb(252, 173, 63);
 
   /* padding */
   --padding-s: 4px;
@@ -44,21 +47,53 @@ body {
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, button {
   margin: 0;
   font-family: var(--font-family-heading);
   line-height: 1.25;
 }
 
 .app-container {
+  position: relative;
   display: flex;
 }
 
 .page-container {
+  position: relative;
   width: calc(100% - 256px);
   min-width: 500px;
+  height: 100%;
 }
 
 .page-wrapper {
+  position: relative;
   padding: var(--padding-xxl);
+  height: 100%;
+}
+
+.page-wrapper > div {
+  position: relative;
+  height: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--color-grey);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-grey-dark);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-primary);
+  border-radius: 4px;
+  cursor: pointer;
 }

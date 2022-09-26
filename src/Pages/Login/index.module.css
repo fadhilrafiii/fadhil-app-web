@@ -1,0 +1,50 @@
+.container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginBox {
+  width: 100%;
+  position: absolute;
+  padding: var(--padding-xxl);
+  background-color: var(--color-light);
+  box-shadow: var(--box-shadow-m);
+  border-radius: 8px;
+  max-width: 480px;
+  margin: auto;
+}
+
+.title {
+  text-align: center;
+  color: var(--color-primary-dark);
+  margin-bottom: var(--padding-xxl);
+}
+
+.loginInput {
+  display: flex;
+  flex-direction: column;
+  gap: var(--padding-xl);
+}
+
+.errorMessage {
+  text-align: center;
+  color: var(--color-destructive);
+  font-size: 14px;
+}
+
+.dontHaveAccount {
+  text-align: center;
+  margin-top: var(--padding-m);
+  font-size: 14px;
+}
+
+.registerLink {
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+.registerLink:active, .registerLink:hover {
+  text-decoration: underline;
+}
