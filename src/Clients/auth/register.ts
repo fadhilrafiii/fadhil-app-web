@@ -1,3 +1,5 @@
+import { AxiosError, AxiosResponse } from 'axios';
+
 import axios from 'Clients/axios';
 
 export interface RegisterData {
@@ -10,7 +12,11 @@ export interface RegisterData {
 }
 
 export const registerAPI = async (data: RegisterData) => {
-  const res = await axios.post('/auth/login', data);
+  try {
+    const res = await axios.post('/auth/register', data);
 
-  return res;
+    return res;
+  } catch (err) {
+    throw (err as AxiosError)?.response as AxiosResponse;
+  }
 };

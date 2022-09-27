@@ -19,6 +19,7 @@ const TextInput = ({
   const classes = [styles.input, styles[inputType], props.className];
 
   if (isFullwidth) classes.push(styles.isFullwidth);
+  if (props.required) classes.push(styles.isRequired);
 
   return <input {...props} className={classes.join(' ')} />;
 };

@@ -1,20 +1,13 @@
 import React from 'react';
 
-import {
-  IndexRouteProps,
-  LayoutRouteProps,
-  Navigate,
-  Outlet,
-  PathRouteProps,
-} from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 
-type PublicRouteProps = { isAuthenticated: boolean } & (
-  | PathRouteProps
-  | LayoutRouteProps
-  | IndexRouteProps
-);
+import { useAppSelector } from 'Redux/hooks';
+import { userSelector } from 'Redux/Slices/userSlice';
 
-const PublicRoute = ({ isAuthenticated }: PublicRouteProps) => {
+const PublicRoute = () => {
+  const { isAuthenticated } = useAppSelector(userSelector);
+
   if (isAuthenticated) return <Navigate to="/to-do" />;
 
   return <Outlet />;

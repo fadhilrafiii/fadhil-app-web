@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 
 import { AxiosResponse } from 'axios';
+import { Link } from 'react-router-dom';
 
 import Button, { ButtonTheme, ButtonType } from 'Components/Button';
 import { LoadingSpinner } from 'Components/Loading';
@@ -37,7 +38,7 @@ const Login = () => {
       await dispatch(setAuthLoading());
       await loginAPI(loginData)
         .then(async (res: AxiosResponse) => {
-          await dispatch(setUser(res.data.data));
+          await dispatch(setUser(res.data));
         })
         .catch(async (err: AxiosResponse) => {
           await dispatch(setAuthError(err.data.message));
@@ -57,7 +58,9 @@ const Login = () => {
             isFullwidth
             placeholder="Username/Email"
             name="username"
+            value={loginData.username}
             onChange={handleChangeLoginData}
+            required
             autoFocus
           />
           <TextInput
@@ -65,7 +68,9 @@ const Login = () => {
             placeholder="Password"
             type="password"
             name="password"
+            value={loginData.password}
             onChange={handleChangeLoginData}
+            required
             autoComplete="on"
           />
           {errorMessage && <div className={styles.errorMessage}>{errorMessage}</div>}
@@ -79,7 +84,10 @@ const Login = () => {
           </Button>
         </form>
         <div className={styles.dontHaveAccount}>
-          Don&apos;t have an account? <span className={styles.registerLink}>Register here!</span>
+          Don&apos;t have an account?{' '}
+          <Link to="/register" className={styles.registerLink}>
+            Register here!
+          </Link>
         </div>
       </div>
     </div>

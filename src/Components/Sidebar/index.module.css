@@ -1,6 +1,6 @@
 .container {
   color: var(--color-light);
-  width: 256px;
+  min-width: 256px;
   position: sticky;
   height: 100vh;
   background-color: var(--color-primary-dark);

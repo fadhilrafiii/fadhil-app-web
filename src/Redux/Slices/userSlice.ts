@@ -33,13 +33,17 @@ export const userSlice = createSlice({
     setAuthError: (state: UserState, action: PayloadAction<string>) => {
       state.errorMessage = action.payload;
       state.isLoading = false;
+    },
+    unsetUser: (state: UserState) => {
+      state.errorMessage = '';
+      state.isLoading = false;
       state.profile = undefined;
       state.isAuthenticated = false;
     },
   },
 });
 
-export const { setAuthLoading, setUser, setAuthError } = userSlice.actions;
+export const { setAuthLoading, setUser, setAuthError, unsetUser } = userSlice.actions;
 export const userSelector = (state: RootState) => state.user;
 
 export default userSlice.reducer;

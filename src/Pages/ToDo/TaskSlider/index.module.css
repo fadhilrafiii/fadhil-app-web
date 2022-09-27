@@ -10,8 +10,15 @@
   display: flex;
   gap: var(--padding-m);
   justify-content: flex-start;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 
+.emptyTask {
+  width: 100%;
+  padding: var(--padding-l) var(--padding-xl) var(--padding-xxl);
+  color: var(--color-grey-dark);
+  font-size: 18px;
+  text-align: center;
+}
 
 

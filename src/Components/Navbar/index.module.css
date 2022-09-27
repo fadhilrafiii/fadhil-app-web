@@ -46,15 +46,12 @@
   font-size: 12px;
 }
 
-.settings {
+.settings, .logout {
   display: flex;
   align-items: center;
   gap: var(--padding-m);
 }
 
 .logout {
-  display: flex;
-  align-items: center;
-  gap: var(--padding-m);
   color: var(--color-destructive);
 }

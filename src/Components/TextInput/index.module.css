@@ -18,3 +18,14 @@
 .isFullwidth {
   width: 100%;
 }
+
+.isRequired {
+  position: relative;
+}
+
+.isRequired::after {
+  content: '*';
+  position: absolute;
+  right: 0;
+  top: 0;
+}
