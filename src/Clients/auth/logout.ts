@@ -4,9 +4,7 @@ import axios from 'Clients/axios';
 
 export const logoutAPI = async (): Promise<AxiosResponse> => {
   try {
-    const res = await axios.post('/auth/logout', undefined, {
-      withCredentials: true,
-    });
+    const res = await axios.post('/auth/logout', undefined);
 
     return res.data;
   } catch (err) {

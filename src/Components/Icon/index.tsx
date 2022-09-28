@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {
+  RiAddFill,
   RiArrowDropDownLine,
   RiArrowDropUpLine,
   RiCalendarTodoFill,
@@ -21,22 +22,24 @@ interface IconProps {
 
 const Icon = ({ name, size = 24, color = '#fff' }: IconProps) => {
   switch (name) {
+    case IconName.Add:
+      return <RiAddFill size={size} fill={color} />;
     case IconName.Agenda:
       return <RiCalendarTodoFill size={size} fill={color} />;
+    case IconName.ArrowDropDown:
+      return <RiArrowDropDownLine size={size} fill={color} />;
+    case IconName.ArrowDropUp:
+      return <RiArrowDropUpLine size={size} fill={color} />;
+    case IconName.Chat:
+      return <RiChat3Fill size={size} fill={color} />;
+    case IconName.Exit:
+      return <RiLogoutBoxLine size={size} fill={color} />;
     case IconName.Money:
       return <RiMoneyDollarBoxFill size={size} fill={color} />;
     case IconName.Notification:
       return <RiNotification3Fill size={size} fill={color} />;
-    case IconName.ArrowDropUp:
-      return <RiArrowDropUpLine size={size} fill={color} />;
-    case IconName.ArrowDropDown:
-      return <RiArrowDropDownLine size={size} fill={color} />;
     case IconName.Setting:
       return <RiSettings4Fill size={size} fill={color} />;
-    case IconName.Exit:
-      return <RiLogoutBoxLine size={size} fill={color} />;
-    case IconName.Chat:
-      return <RiChat3Fill size={size} fill={color} />;
   }
 };
 

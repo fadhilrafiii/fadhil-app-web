@@ -1,30 +1,32 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 
-import { Navigate, Outlet } from 'react-router-dom';
+import { AxiosResponse } from 'axios';
+import { Outlet, useNavigate } from 'react-router-dom';
 
-import { useAppSelector } from 'Redux/hooks';
-import { userSelector } from 'Redux/Slices/userSlice';
+import { useAppDispatch, useAppSelector } from 'Redux/hooks';
+import { setAuthLoading, setUser, userSelector } from 'Redux/Slices/userSlice';
+
+import { authenticateAPI } from 'Clients/auth';
 
 const PrivateRoute = () => {
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { isAuthenticated } = useAppSelector(userSelector);
 
-  // const authenticateUser = useCallback(async () => {
-  //   await authenticateAPI().then(async (res: AxiosResponse) => {
-  //     await dispatch(setUser(res.data.data));
-  //   })
-  //   .catch(async (err: AxiosResponse) => {
-  //     await dispatch(setAuthError(err.data.message));
-  //   });
-  // }, [dispatch]);
+  const authenticateUser = useCallback(async () => {
+    await authenticateAPI()
+      .then(async (res: AxiosResponse) => dispatch(setUser(res.data.data)))
+      .catch(async () => {
+        await dispatch(setAuthLoading(false));
+        navigate('/');
+      });
+  }, [dispatch, navigate]);
 
-  // useEffect(() => {
-  //   if (!isAuthenticated) {
-  //     authenticateUser();
-  //   }
-  // }, [authenticateUser, isAuthenticated]);
-
-  if (!isAuthenticated) return <Navigate to="/" />;
+  useEffect(() => {
+    if (!isAuthenticated) {
+      authenticateUser();
+    }
+  }, [authenticateUser, isAuthenticated]);
 
   return <Outlet />;
 };

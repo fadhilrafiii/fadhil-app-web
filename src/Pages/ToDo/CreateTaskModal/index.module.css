@@ -1,0 +1,14 @@
+.inputEntry {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--padding-m);
+}
+
+.inputEntry > *:first-child {
+  flex: 2;
+  padding: var(--padding-m) 0;
+}
+
+.inputEntry > *:last-child {
+  flex: 5;
+}

@@ -9,9 +9,7 @@ export interface LoginData {
 
 export const loginAPI = async (data: LoginData): Promise<AxiosResponse> => {
   try {
-    const res = await axios.post('/auth/login', data, {
-      withCredentials: true,
-    });
+    const res = await axios.post('/auth/login', data);
 
     return res.data;
   } catch (err) {

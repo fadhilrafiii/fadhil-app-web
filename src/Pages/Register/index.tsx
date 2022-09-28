@@ -56,7 +56,7 @@ const Register = () => {
 
       if (errorMessage) return;
 
-      await dispatch(setAuthLoading());
+      await dispatch(setAuthLoading(true));
       await registerAPI(registerData)
         .then(async (res: AxiosResponse) => {
           await dispatch(setUser(res.data.data));
@@ -64,7 +64,6 @@ const Register = () => {
         .catch(async (err: AxiosResponse) => {
           await dispatch(setAuthError(err.data.message));
         });
-      console.log('REGISTER', e);
     },
     [dispatch, errorMessage, registerData],
   );
@@ -141,7 +140,7 @@ const Register = () => {
         </form>
         <div className={styles.alreadyHaveAccount}>
           Already have account?{' '}
-          <Link to="/login" className={styles.loginLink}>
+          <Link to="/" className={styles.loginLink}>
             Login here!
           </Link>
         </div>

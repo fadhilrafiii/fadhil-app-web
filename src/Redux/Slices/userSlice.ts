@@ -21,8 +21,8 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setAuthLoading: (state: UserState) => {
-      state.isLoading = true;
+    setAuthLoading: (state: UserState, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
     },
     setUser: (state: UserState, action: PayloadAction<User>) => {
       state.profile = action.payload;
