@@ -1,0 +1,49 @@
+.container {
+  position: relative;
+}
+
+.inputContainer {
+  position: relative;
+}
+
+.input {
+  padding-right: var(--padding-xxxl);
+}
+
+.toggle {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-45%);
+  border-left: 1px solid var(--color-grey);
+  cursor: pointer;
+}
+
+.optionContainer {
+  padding-bottom: var(--padding-l);
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+}
+
+.options {
+  box-shadow: var(--box-shadow-m);
+  margin-top: var(--padding-m);
+  border-radius: 4px;
+  overflow-x: hidden;
+}
+
+.optionList {
+  display: flex;
+  flex-direction: column;
+}
+
+.optionItem {
+  padding: var(--padding-m) var(--padding-l);
+  background-color: var(--color-light);
+  cursor: pointer;
+}
+
+.optionItem:active, .optionItem:hover {
+  background-color: var(--color-grey);
+}

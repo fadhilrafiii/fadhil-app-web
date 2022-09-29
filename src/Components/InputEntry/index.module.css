@@ -1,0 +1,29 @@
+.inputEntry {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--padding-m);
+}
+
+.inputEntry > *:first-child {
+  flex: 2;
+  padding: var(--padding-m) 0;
+}
+
+.inputEntry > *:last-child {
+  flex: 5;
+}
+
+.inputEntryLeft {
+  display: flex;
+  flex-direction: column;
+}
+
+.subLabel {
+  color: var(--color-grey-dark);
+  font-size: 12px;
+  margin-top: var(--padding-s);
+}
+
+.required {
+  color: var(--color-destructive);
+}

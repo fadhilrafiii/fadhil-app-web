@@ -14,20 +14,16 @@ export enum ActivityDifficultyEnum {
   VERY_EASY = 'Very Easy',
 }
 
-export interface ActivityField {
+export interface Activity {
+  _id: string;
   name: string;
-  description?: string;
+  description: string;
   deadline?: Date;
   schedule?: Date;
-  difficulty: ActivityDifficultyEnum | null;
-  priority: ActivityPriorityEnum | null;
-  prerequisites: string[];
+  prerequisites: [];
   subTask: string[];
   isHabit?: boolean;
   isDone?: boolean;
-}
-export interface Activity extends ActivityField {
-  _id: string;
   difficulty: ActivityDifficultyEnum;
   priority: ActivityPriorityEnum;
 }

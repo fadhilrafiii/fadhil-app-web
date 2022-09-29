@@ -3,7 +3,7 @@
   min-width: 256px;
   position: sticky;
   height: 100vh;
-  background-color: var(--color-primary-dark);
+  background-color: var(--color-primary);
   padding: var(--padding-xl) var(--padding-l);
   left: 0;
   top: 0;
@@ -56,5 +56,5 @@
 }
 
 .menuItemSelected {
-  background-color: var(--color-primary);
+  background-color: var(--color-primary-dark);
 }

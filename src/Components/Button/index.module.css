@@ -1,6 +1,5 @@
 .button {
   padding: var(--padding-m);
-  min-width: 100px;
   max-width: max-content;
   font-weight: 500;
   font-size: 16px;
@@ -80,4 +79,9 @@
 
 .destructive.outlined:hover {
   background-color: var(--color-grey);
+}
+
+.isFullwidth {
+  width: 100%;
+  max-width: 100%; 
 }

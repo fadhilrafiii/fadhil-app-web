@@ -1,16 +1,15 @@
 import React from 'react';
 
-import {
-  RiAddFill,
-  RiArrowDropDownLine,
-  RiArrowDropUpLine,
-  RiCalendarTodoFill,
-  RiChat3Fill,
-  RiLogoutBoxLine,
-  RiMoneyDollarBoxFill,
-  RiNotification3Fill,
-  RiSettings4Fill,
-} from 'react-icons/ri';
+import { RiAddFill } from '@react-icons/all-files/ri/RiAddFill';
+import { RiArrowDropDownLine } from '@react-icons/all-files/ri/RiArrowDropDownLine';
+import { RiArrowDropUpLine } from '@react-icons/all-files/ri/RiArrowDropUpLine';
+import { RiCalendarTodoFill } from '@react-icons/all-files/ri/RiCalendarTodoFill';
+import { RiChat3Fill } from '@react-icons/all-files/ri/RiChat3Fill';
+import { RiCloseFill } from '@react-icons/all-files/ri/RiCloseFill';
+import { RiLogoutBoxLine } from '@react-icons/all-files/ri/RiLogoutBoxLine';
+import { RiMoneyDollarBoxFill } from '@react-icons/all-files/ri/RiMoneyDollarBoxFill';
+import { RiNotification3Fill } from '@react-icons/all-files/ri/RiNotification3Fill';
+import { RiSettings4Fill } from '@react-icons/all-files/ri/RiSettings4Fill';
 
 import { IconName } from 'Shared/Types/Icon';
 
@@ -32,6 +31,8 @@ const Icon = ({ name, size = 24, color = '#fff' }: IconProps) => {
       return <RiArrowDropUpLine size={size} fill={color} />;
     case IconName.Chat:
       return <RiChat3Fill size={size} fill={color} />;
+    case IconName.Close:
+      return <RiCloseFill size={size} fill={color} />;
     case IconName.Exit:
       return <RiLogoutBoxLine size={size} fill={color} />;
     case IconName.Money:

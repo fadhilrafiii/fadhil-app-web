@@ -6,12 +6,10 @@
   --font-family-paragraph: Lato, sans-serif;
 
   /* color */
-  --color-primary: rgb(233, 103, 50);
-  --color-primary-dark: rgba(212,59,27,1);
-  --color-primary-light: rgba(251,146,99,1);
-  --color-secondary: rgba(89,113,226,1);
-  --color-secondary-dark: rgba(47,44,113,1);
-  --color-secondary-light: rgb(184,193,235);
+  --color-primary: rgb(57, 83, 162);
+  --color-primary-dark: rgb(39, 59, 121);
+  --color-primary-light: rgb(100, 124, 195);
+  --color-secondary: rgb(0, 0, 0);
   --color-destructive: rgb(210, 0, 0);
   --color-destructive-dark: rgb(160, 0, 0);
   --color-light: white;
@@ -96,4 +94,12 @@ h1, h2, h3, h4, h5, h6, button {
   background-color: var(--color-primary);
   border-radius: 4px;
   cursor: pointer;
+}
+
+ul, ol {
+  padding-left: var(--padding-xl);
+}
+
+li {
+  padding: var(--padding-s) 0;
 }

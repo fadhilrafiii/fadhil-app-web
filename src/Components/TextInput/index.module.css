@@ -1,5 +1,4 @@
 .input {
-  padding: var(--padding-m) var(--padding-l);
   outline: none;
   border-radius: 4px;
   border: 1.5px solid var(--color-grey-dark);
@@ -15,6 +14,19 @@
 .input:active, .input:focus {
   border-color: var(--color-primary-light);
 }
+
+.small {
+  padding: var(--padding-m) var(--padding-l);
+}
+
+.medium {
+  padding: var(--padding-l);
+}
+
+.large {
+  padding: var(--padding-xl) var(--padding-l);
+}
+
 
 .isFullwidth {
   width: 100%;

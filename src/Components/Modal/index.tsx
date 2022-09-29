@@ -48,7 +48,7 @@ const Modal = ({
         <div className={styles.modalFooter}>
           {secondaryButtonTitle && onSecondaryButtonClick && (
             <Button
-              theme={ButtonTheme.Primary}
+              theme={ButtonTheme.Destructive}
               buttonType={ButtonType.Outlined}
               onClick={onSecondaryButtonClick}
             >

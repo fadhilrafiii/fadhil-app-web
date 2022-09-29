@@ -4,6 +4,7 @@ export enum IconName {
   ArrowDropDown = 'ArrowDropDown',
   ArrowDropUp = 'ArrowDropUp',
   Chat = 'Chat',
+  Close = 'Close',
   Exit = 'Exit',
   Money = 'Money',
   Notification = 'Notification',

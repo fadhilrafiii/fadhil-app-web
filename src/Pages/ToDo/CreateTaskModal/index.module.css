@@ -1,14 +1,28 @@
-.inputEntry {
+.subtask {
   display: flex;
-  align-items: flex-start;
-  gap: var(--padding-m);
+  flex-direction: column;
 }
 
-.inputEntry > *:first-child {
-  flex: 2;
-  padding: var(--padding-m) 0;
+.noSubtask {
+  color: var(--color-grey-dark);
 }
 
-.inputEntry > *:last-child {
-  flex: 5;
+.addSubtaskButton {
+  font-size: 14px;
+  align-self: flex-end;
+}
+
+.inputSubtask {
+  margin: var(--padding-m) 0;
+}
+
+.subTaskItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.removeSubtaskIcon {
+  cursor: pointer;
+  display: inherit;
 }
