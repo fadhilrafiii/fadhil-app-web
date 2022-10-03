@@ -1,0 +1,129 @@
+.react-datetime-picker {
+  width: 100%;
+}
+
+.react-datetime-picker--open .react-datetime-picker__wrapper {
+  border-color: var(--color-primary);
+}
+
+.react-datetime-picker__wrapper {
+  padding: var(--padding-m) var(--padding-l);
+  border-radius: 4px;
+  border: 1.5px solid var(--color-grey-dark);
+}
+
+
+.react-datetime-picker__inputGroup {
+  padding: 0;
+}
+
+.react-datetime-picker__button {
+  padding: 0;
+  padding-left: var(--padding-m);
+}
+
+.react-datetime-picker__button svg {
+  stroke: var(--color-grey-dark);
+}
+
+.react-datetime-picker__button:enabled:hover .react-datetime-picker__clear-button__icon, .react-datetime-picker__button:enabled:focus .react-datetime-picker__button__icon {
+  stroke: var(--color-destructive);
+}
+
+.react-datetime-picker__button:enabled:hover .react-datetime-picker__calendar-button__icon, .react-datetime-picker__button:enabled:focus .react-datetime-picker__button__icon {
+  stroke: var(--color-primary);
+}
+
+.react-datetime-picker__calendar {
+  width: 100%;
+  margin-bottom: var(--padding-m);
+}
+
+.react-calendar {
+  border: none;
+  box-shadow: var(--box-shadow-m);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.react-calendar__navigation {
+  background-color: var(--color-primary);
+  margin-bottom: 0;
+}
+
+.react-calendar__navigation > * {
+  color: var(--color-light);
+  transition: all .2s;
+}
+
+.react-calendar__navigation button:enabled:hover, .react-calendar__navigation button:enabled:focus {
+  background-color: var(--color-primary-dark);
+}
+
+.react-calendar__navigation__label__labelText  {
+  color: var(--color-light);
+  font-family: var(--font-family-heading);
+}
+
+.react-calendar__navigation__arrow {
+  font-size: 20px;
+}
+
+.react-calendar__viewContainer {
+  padding: var(--padding-m);
+}
+
+.react-calendar__tile {
+  border-radius: 4px;
+}
+
+.react-calendar__tile--active {
+  background-color: var(--color-primary-light);
+}
+
+.react-calendar__tile--active abbr {
+  color: var(--color-light);
+}
+
+.react-calendar__tile--now {
+  background-color: var(--color-warning);
+}
+
+.react-calendar__tile--now:enabled:hover, .react-calendar__tile--now:enabled:focus {
+  background-color: var(--color-warning);
+}
+
+.react-datetime-picker__clock {
+  width: 100%;
+  max-width: 350px;
+  border: none;
+  box-shadow: var(--box-shadow-m);
+  border-radius: 4px;
+  margin-bottom: var(--padding-m);
+}
+
+.react-clock {
+  margin: 0 auto;
+}
+
+.react-clock__face {
+  background-color: var(--color-primary-dark);
+  border: none;
+  box-shadow: inset 0 0 12px var(--color-dark);
+}
+
+
+.react-clock__hand__body {
+  border-radius: 4px;
+  background-color: var(--color-light);
+  box-shadow: 2px 2px 4px -1px var(--color-dark);
+}
+
+.react-clock__hour-mark__body {
+  background-color: var(--color-light);
+  box-shadow: 2px 2px 2px -1px var(--color-dark)
+}
+
+.react-clock__minute-mark__body {
+  background-color: var(--color-primary-light);
+}
