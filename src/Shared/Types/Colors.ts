@@ -9,6 +9,7 @@ export enum Colors {
   Light = '#fff',
   Dark = 'rgb(54, 54, 54)',
   Dark50 = 'rgb(54, 54, 54, 0.8)',
+  Grey20 = 'rgba(225, 225, 225, 0.2)',
   Grey = 'rgb(240, 240, 240)',
   GreyDark = 'rgb(135, 135, 135)',
   Success = 'rgb(74, 147, 74)',

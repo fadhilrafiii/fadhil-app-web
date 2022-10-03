@@ -1,0 +1,51 @@
+.snackbarContainer {
+  position: fixed;
+  width: clamp(340px, 50vw, 540px);
+  margin: var(--padding-xxxl);
+  padding: var(--padding-xl);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4px;
+  z-index: 10000;
+  box-shadow: var(--box-shadow-dark);
+}
+
+.snackbarContainer > * {
+  color: var(--color-light);
+}
+
+.success {
+  background-color: var(--color-primary);
+}
+
+.failed {
+  background-color: var(--color-destructive);
+}
+
+.top-center {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bottom-right {
+  bottom: 0;
+  right: 0;
+}
+
+.closeButton {
+  font-size: 20px;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .3s;
+}
+
+.closeButton:hover {
+  background-color: var(--color-grey20);
+}

@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 
 import Button, { ButtonTheme, ButtonType } from 'Components/Button';
+import { LoadingSpinner } from 'Components/Loading';
 
 import styles from './index.module.css';
 
@@ -12,6 +13,8 @@ interface ModalProps {
   primaryButtonTitle?: string;
   secondaryButtonTitle?: string;
   leftButtonTitle?: string;
+  primaryButtonLoading?: boolean;
+  leftButtonLoading?: boolean;
   onCloseModal: () => void;
   onPrimaryButtonClick?: () => void;
   onSecondaryButtonClick?: () => void;
@@ -26,6 +29,8 @@ const Modal = ({
   primaryButtonTitle,
   secondaryButtonTitle,
   leftButtonTitle,
+  primaryButtonLoading,
+  leftButtonLoading,
   onPrimaryButtonClick,
   onSecondaryButtonClick,
   onLeftButtonClick,
@@ -57,7 +62,7 @@ const Modal = ({
                 buttonType={ButtonType.Filled}
                 onClick={onLeftButtonClick}
               >
-                {leftButtonTitle}
+                {leftButtonLoading ? <LoadingSpinner /> : leftButtonTitle}
               </Button>
             )}
           </div>
@@ -76,8 +81,9 @@ const Modal = ({
                 theme={ButtonTheme.Primary}
                 buttonType={ButtonType.Filled}
                 onClick={onPrimaryButtonClick}
+                disabled={primaryButtonLoading}
               >
-                {primaryButtonTitle}
+                {primaryButtonLoading ? <LoadingSpinner /> : primaryButtonTitle}
               </Button>
             )}
           </div>
