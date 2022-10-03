@@ -9,13 +9,14 @@
   --color-primary: rgb(57, 83, 162);
   --color-primary-dark: rgb(39, 59, 121);
   --color-primary-light: rgb(100, 124, 195);
-  --color-secondary: rgb(0, 0, 0);
+  --color-secondary: rgb(36, 36, 36);
   --color-destructive: rgb(210, 0, 0);
   --color-destructive-dark: rgb(160, 0, 0);
+  --color-destructive-light: rgb(255, 94, 94);
   --color-light: white;
   --color-dark: rgb(54, 54, 54);
   --color-dark80: rgb(54, 54, 54, 0.8);
-  --color-grey: rgb(240, 240, 240);
+  --color-grey: rgb(225, 225, 225);
   --color-grey-dark: rgb(135, 135, 135);
   --color-success: rgb(74, 147, 74);
   --color-warning: rgb(252, 173, 63);
@@ -30,7 +31,7 @@
 
   /* box-shadow */
   --box-shadow-s: 1px 1px 4px -1px rgb(135, 135, 135);
-  --box-shadow-m: 2px 2px 6px -1px rgb(135, 135, 135);
+  --box-shadow-m: 1px 2px 8px -2px rgb(135, 135, 135);
 }
 
 * {
@@ -50,28 +51,6 @@ h1, h2, h3, h4, h5, h6, button {
   margin: 0;
   font-family: var(--font-family-heading);
   line-height: 1.25;
-}
-
-.app-container {
-  position: relative;
-  display: flex;
-}
-
-.page-container {
-  position: relative;
-  width: calc(100% - 256px);
-  min-width: 500px;
-  min-height: calc(100vh - 72px);
-}
-
-.page-wrapper {
-  position: relative;
-  padding: var(--padding-xxl);
-}
-
-.page-wrapper > div {
-  position: relative;
-  height: 100%;
 }
 
 ::-webkit-scrollbar {

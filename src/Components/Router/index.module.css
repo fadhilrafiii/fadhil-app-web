@@ -1,0 +1,11 @@
+.pageWrapper {
+  display: flex;
+}
+
+.pageContainer {
+  width: 100%;
+}
+
+.pageContent {
+  padding: var(--padding-xxl);
+}
