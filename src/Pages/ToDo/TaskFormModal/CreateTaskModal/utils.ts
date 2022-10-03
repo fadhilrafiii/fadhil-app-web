@@ -1,11 +1,14 @@
 import { useState } from 'react';
 
+import { showSnackbar } from 'Redux/Slices/snackbarSlice';
+
 import { createActivity, CreateTaskActivityPayload } from 'Clients/activity/create';
 
 import { ACTIVITY_TYPE_OPTIONS } from 'Shared/Contants/Activity';
 import { OptionValue } from 'Shared/Types/Option';
 
 import { TaskFormField } from '../types';
+import { useAppDispatch } from './../../../../Redux/hooks';
 import { TASK_FORM_ENTRIES } from './constants';
 
 interface UseTaskFormFieldTaskFormProps {
@@ -13,6 +16,8 @@ interface UseTaskFormFieldTaskFormProps {
 }
 
 export const useCreateTaskForm = ({ onCreateTask }: UseTaskFormFieldTaskFormProps) => {
+  const dispatch = useAppDispatch();
+  const [isLoading, setIsLoading] = useState(false);
   const [taskEntries, setTaskEntries] = useState<TaskFormField>(TASK_FORM_ENTRIES);
 
   const handleChangeTextInputField = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,6 +80,7 @@ export const useCreateTaskForm = ({ onCreateTask }: UseTaskFormFieldTaskFormProp
   };
 
   const handleSubmitCreateTaskForm = async () => {
+    setIsLoading(true);
     const payload: CreateTaskActivityPayload = {
       name: taskEntries.name.value,
       description: taskEntries.description.value,
@@ -86,11 +92,25 @@ export const useCreateTaskForm = ({ onCreateTask }: UseTaskFormFieldTaskFormProp
       isHabit: taskEntries.isHabit.value,
     };
 
-    await createActivity(payload).then(() => onCreateTask());
+    await createActivity(payload)
+      .then(() => {
+        dispatch(
+          showSnackbar({
+            text: 'Success create task!',
+          }),
+        );
+        onCreateTask();
+        handleSetEmptyForm();
+      })
+      .finally(() => setIsLoading(false));
   };
 
+  const handleSetEmptyForm = () => setTaskEntries(TASK_FORM_ENTRIES);
+
   return {
+    isLoading,
     taskEntries,
+    handleSetEmptyForm,
     handleChangeTextInputField,
     handleChangeSelectField,
     handleChangeDateTimeField,

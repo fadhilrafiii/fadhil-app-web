@@ -1,8 +1,8 @@
 .container {
   margin: var(--padding-s) var(--padding-s) var(--padding-l);
-  min-height: 250px;
+  min-height: 300px;
   padding: var(--padding-l);
-  min-width: 300px;
+  width: 300px;
   box-shadow: 5px 5px 4px 0 var(--color-grey-dark);
   display: flex;
   flex-direction: column;

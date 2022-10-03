@@ -22,6 +22,7 @@ import styles from '../index.module.css';
 
 interface EditTaskModalProps {
   initialData: Activity;
+  isDeletingTask?: boolean;
   isOpen: boolean;
   actionDeleteTask: () => void;
   onCloseModal: () => void;
@@ -30,12 +31,14 @@ interface EditTaskModalProps {
 
 const EditTaskModal = ({
   initialData,
+  isDeletingTask = false,
   isOpen,
   actionDeleteTask,
   onCloseModal,
   onEditTask,
 }: EditTaskModalProps) => {
   const {
+    isLoading,
     taskEntries,
     handleChangeTextInputField,
     handleChangeDateTimeField,
@@ -49,8 +52,6 @@ const EditTaskModal = ({
   const { name, description, difficulty, priority, subTask, schedule, deadline, isHabit } =
     taskEntries;
 
-  console.log(deadline.value, typeof deadline.value);
-
   return (
     <>
       <Modal
@@ -60,6 +61,8 @@ const EditTaskModal = ({
         primaryButtonTitle="Edit"
         secondaryButtonTitle="Cancel"
         leftButtonTitle="Delete"
+        primaryButtonLoading={isLoading}
+        leftButtonLoading={isDeletingTask}
         onPrimaryButtonClick={handleSubmitEditTaskForm}
         onSecondaryButtonClick={onCloseModal}
         onLeftButtonClick={actionDeleteTask}

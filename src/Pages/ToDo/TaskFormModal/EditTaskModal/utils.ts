@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { showSnackbar } from 'Redux/Slices/snackbarSlice';
+
 import { editActivity, EditActivityPayload } from 'Clients/activity/edit';
 
 import { ACTIVITY_TYPE_OPTIONS } from 'Shared/Contants/Activity';
@@ -7,6 +9,7 @@ import { Activity } from 'Shared/Types/Activity';
 import { OptionValue } from 'Shared/Types/Option';
 
 import { TaskFormField } from '../types';
+import { useAppDispatch } from './../../../../Redux/hooks';
 
 interface UseEditTaskFormProps {
   initialData: Activity;
@@ -14,6 +17,9 @@ interface UseEditTaskFormProps {
 }
 
 export const useEditTaskForm = ({ initialData, onEditTask }: UseEditTaskFormProps) => {
+  const dispatch = useAppDispatch();
+
+  const [isLoading, setIsLoading] = useState(false);
   const [taskEntries, setTaskEntries] = useState<TaskFormField>({
     name: {
       value: initialData.name,
@@ -117,6 +123,7 @@ export const useEditTaskForm = ({ initialData, onEditTask }: UseEditTaskFormProp
   };
 
   const handleSubmitEditTaskForm = async () => {
+    setIsLoading(true);
     const payload: EditActivityPayload = {
       name: taskEntries.name.value,
       description: taskEntries.description.value,
@@ -128,10 +135,20 @@ export const useEditTaskForm = ({ initialData, onEditTask }: UseEditTaskFormProp
       isHabit: taskEntries.isHabit.value,
     };
 
-    await editActivity(initialData._id, payload).then(() => onEditTask());
+    await editActivity(initialData._id, payload)
+      .then(() => {
+        dispatch(
+          showSnackbar({
+            text: 'Success create task!',
+          }),
+        );
+        onEditTask();
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return {
+    isLoading,
     taskEntries,
     handleChangeTextInputField,
     handleChangeSelectField,

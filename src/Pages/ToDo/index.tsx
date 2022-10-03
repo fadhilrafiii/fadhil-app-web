@@ -10,9 +10,8 @@ import { IconName } from 'Shared/Types/Icon';
 import AllTask from './AllTask';
 import CreateTaskModal from './TaskFormModal/CreateTaskModal';
 import EditTaskModal from './TaskFormModal/EditTaskModal';
-import { useDeleteTask } from './TaskFormModal/utils';
 import TaskSlider from './TaskSlider';
-import { useActivitiesList } from './utils';
+import { useActivitiesList, useDeleteTask } from './utils';
 
 import styles from './index.module.css';
 
@@ -72,10 +71,7 @@ const ToDo = () => {
         </div>
         <br />
         <div className={styles.content}>
-          <div className={styles.contentHeader}>
-            <TaskSlider title="Today Task" tasks={allActivities} onClickTask={actionClickTask} />
-            <TaskSlider title="Recommended Task" tasks={[]} onClickTask={actionClickTask} />
-          </div>
+          <TaskSlider title="Today Task" tasks={allActivities} onClickTask={actionClickTask} />
           <AllTask />
         </div>
       </div>

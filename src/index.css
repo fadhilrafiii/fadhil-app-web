@@ -15,7 +15,8 @@
   --color-destructive-light: rgb(255, 94, 94);
   --color-light: white;
   --color-dark: rgb(54, 54, 54);
-  --color-dark80: rgb(54, 54, 54, 0.8);
+  --color-dark80: rgba(54, 54, 54, 0.8);
+  --color-grey20: rgba(225, 225, 225, 0.2);
   --color-grey: rgb(225, 225, 225);
   --color-grey-dark: rgb(135, 135, 135);
   --color-success: rgb(74, 147, 74);
@@ -32,6 +33,7 @@
   /* box-shadow */
   --box-shadow-s: 1px 1px 4px -1px rgb(135, 135, 135);
   --box-shadow-m: 1px 2px 8px -2px rgb(135, 135, 135);
+  --box-shadow-dark: 2px 2px 8px -1px var(--color-secondary);
 }
 
 * {
@@ -45,6 +47,10 @@ body {
   margin: 0;
   background-color: var(--color-grey);
   overflow-x: hidden;
+}
+
+#root {
+  background-color: var(--color-grey20);
 }
 
 h1, h2, h3, h4, h5, h6, button {

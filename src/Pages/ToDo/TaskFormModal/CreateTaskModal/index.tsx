@@ -30,7 +30,9 @@ interface CreateTaskModalProps {
 
 const CreateTaskModal = ({ isOpen, onCloseModal, onCreateTask }: CreateTaskModalProps) => {
   const {
+    isLoading,
     taskEntries,
+    handleSetEmptyForm,
     handleChangeTextInputField,
     handleChangeDateTimeField,
     handleChangeSelectField,
@@ -43,18 +45,22 @@ const CreateTaskModal = ({ isOpen, onCloseModal, onCreateTask }: CreateTaskModal
   const [showOptionalFields, setShowOptionalFields] = useState(false);
 
   const actionToggleShowOptionalField = () => setShowOptionalFields((prev: boolean) => !prev);
+  const actionCloseModal = () => {
+    onCloseModal();
+    handleSetEmptyForm();
+  };
 
   const { name, description, difficulty, priority, subTask, schedule, deadline, isHabit } =
     taskEntries;
-  console.log(deadline.value, typeof deadline.value);
 
   return (
     <Modal
       isOpen={isOpen}
-      onCloseModal={onCloseModal}
+      onCloseModal={actionCloseModal}
       title="Create Task"
       primaryButtonTitle="Create"
       secondaryButtonTitle="Cancel"
+      primaryButtonLoading={isLoading}
       onPrimaryButtonClick={handleSubmitCreateTaskForm}
       onSecondaryButtonClick={onCloseModal}
     >
