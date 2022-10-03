@@ -47,7 +47,7 @@ const TextInput = ({
           className={classes.join(' ')}
         />
       )}
-      <div className={styles.errorMessage}>{errorMessages}</div>
+      {errorMessages && <div className={styles.errorMessage}>{errorMessages}</div>}
     </>
   );
 };

@@ -1,10 +1,10 @@
 import { AxiosError, AxiosResponse } from 'axios';
 
-import axios from '../axios';
+import axios from 'Clients/axios';
 
-export const authenticateAPI = async (): Promise<AxiosResponse> => {
+export const getListActivities = async () => {
   try {
-    const res = await axios.post('/auth/authenticate');
+    const res = await axios.get('/activities');
 
     return res.data;
   } catch (err) {

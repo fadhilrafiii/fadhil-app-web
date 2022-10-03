@@ -1,7 +1,7 @@
 import { ActivityDifficultyEnum, ActivityPriorityEnum } from 'Shared/Types/Activity';
 import { FormField } from 'Shared/Types/Form';
 
-export interface CreateTaskFormField {
+export interface TaskFormField {
   name: FormField<string>;
   description: FormField<string>;
   priority: FormField<ActivityPriorityEnum | undefined>;
@@ -9,7 +9,6 @@ export interface CreateTaskFormField {
   difficulty: FormField<ActivityDifficultyEnum | undefined>;
   schedule: FormField<Date | undefined>;
   prerequisites: FormField<[]>;
-  inputSubTask: FormField<string>;
   subTask: FormField<string[]>;
   isHabit: FormField<boolean>;
 }

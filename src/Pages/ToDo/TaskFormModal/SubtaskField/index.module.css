@@ -3,16 +3,16 @@
   flex-direction: column;
 }
 
-.noSubtask {
+.noSubTask {
   color: var(--color-grey-dark);
 }
 
-.addSubtaskButton {
+.addSubTaskButton {
   font-size: 14px;
   align-self: flex-end;
 }
 
-.inputSubtask {
+.inputSubTask {
   margin: var(--padding-m) 0;
 }
 
@@ -22,7 +22,7 @@
   justify-content: space-between;
 }
 
-.removeSubtaskIcon {
+.removeSubTaskIcon {
   cursor: pointer;
   display: inherit;
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { BsExclamationCircleFill } from '@react-icons/all-files/bs/BsExclamationCircleFill';
 import { RiAddFill } from '@react-icons/all-files/ri/RiAddFill';
 import { RiArrowDropDownLine } from '@react-icons/all-files/ri/RiArrowDropDownLine';
 import { RiArrowDropUpLine } from '@react-icons/all-files/ri/RiArrowDropUpLine';
@@ -35,6 +36,8 @@ const Icon = ({ name, size = 24, color = '#fff' }: IconProps) => {
       return <RiCloseFill size={size} fill={color} />;
     case IconName.Exit:
       return <RiLogoutBoxLine size={size} fill={color} />;
+    case IconName.Exclamation:
+      return <BsExclamationCircleFill size={size} fill={color} />;
     case IconName.Money:
       return <RiMoneyDollarBoxFill size={size} fill={color} />;
     case IconName.Notification:

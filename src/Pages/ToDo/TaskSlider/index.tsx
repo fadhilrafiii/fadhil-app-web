@@ -10,12 +10,14 @@ interface TaskSliderProps {
   title?: string;
   tasks: Activity[];
   emptyTaskText?: string;
+  onClickTask: (taskId: string) => void;
 }
 
 const TaskSlider = ({
   title,
   tasks,
   emptyTaskText = 'No task for this section',
+  onClickTask,
 }: TaskSliderProps) => {
   return (
     <div className={styles.container}>
@@ -23,7 +25,9 @@ const TaskSlider = ({
       <br />
       <div className={styles.taskSlider}>
         {tasks.length > 0 ? (
-          tasks.map((task: Activity) => <Task key={task._id} task={task} />)
+          tasks.map((task: Activity) => (
+            <Task key={task._id} task={task} onClickTask={onClickTask} />
+          ))
         ) : (
           <div className={styles.emptyTask}>{emptyTaskText}</div>
         )}

@@ -1,6 +1,5 @@
-import { Option } from 'Components/Select/types';
-
 import { ActivityDifficultyEnum, ActivityPriorityEnum } from 'Shared/Types/Activity';
+import { Option } from 'Shared/Types/Option';
 
 export const ACTIVITY_DIFFICULTY_OPTIONS: Option[] = [
   {
@@ -45,5 +44,16 @@ export const ACTIVITY_PRIORITY_OPTIONS: Option[] = [
   {
     label: ActivityPriorityEnum.VERY_LOW,
     value: ActivityPriorityEnum.VERY_LOW,
+  },
+];
+
+export const ACTIVITY_TYPE_OPTIONS: Option[] = [
+  {
+    label: 'Habits',
+    value: 'Habits',
+  },
+  {
+    label: 'One Time Task',
+    value: 'One Time Task',
   },
 ];

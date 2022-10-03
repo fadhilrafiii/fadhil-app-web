@@ -13,7 +13,7 @@ import TextInput from 'Components/TextInput';
 import { useAppDispatch, useAppSelector } from 'Redux/hooks';
 import { setAuthError, setAuthLoading, setUser, userSelector } from 'Redux/Slices/userSlice';
 
-import { registerAPI, RegisterData } from 'Clients/auth';
+import { registerAPI, RegisterData } from 'Clients/auth/register';
 
 import styles from './index.module.css';
 
@@ -59,7 +59,7 @@ const Register = () => {
       await dispatch(setAuthLoading(true));
       await registerAPI(registerData)
         .then(async (res: AxiosResponse) => {
-          await dispatch(setUser(res.data.data));
+          await dispatch(setUser(res.data));
         })
         .catch(async (err: AxiosResponse) => {
           await dispatch(setAuthError(err.data.message));

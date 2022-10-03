@@ -1,6 +1,7 @@
 .button {
   padding: var(--padding-m);
   max-width: max-content;
+  min-width: 80px;
   font-weight: 500;
   font-size: 16px;
   cursor: pointer;
@@ -10,6 +11,20 @@
   gap: var(--padding-m);
   justify-content: center;
   align-items: center;
+}
+
+.button:disabled {
+  background-color: var(--color-grey) !important;
+  border-color: var(--color-grey) !important;
+  color: var(--color-grey-dark) !important;
+}
+
+.button:disabled * {
+  color: var(--color-grey-dark) !important;
+}
+
+.button:disabled svg {
+  fill: var(--color-grey-dark) !important;
 }
 
 .primary {

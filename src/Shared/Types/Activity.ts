@@ -22,8 +22,9 @@ export interface Activity {
   schedule?: Date;
   prerequisites: [];
   subTask: string[];
-  isHabit?: boolean;
+  isHabit: boolean;
   isDone?: boolean;
   difficulty: ActivityDifficultyEnum;
   priority: ActivityPriorityEnum;
+  color?: string;
 }

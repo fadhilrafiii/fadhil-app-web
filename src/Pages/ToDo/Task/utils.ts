@@ -5,7 +5,7 @@ export const getPriorityColor = (priority: ActivityPriorityEnum) => {
   switch (priority) {
     case ActivityPriorityEnum.VERY_HIGH:
     case ActivityPriorityEnum.HIGH:
-      return Colors.Destructive;
+      return Colors.DestructiveLight;
     case ActivityPriorityEnum.MEDIUM:
       return Colors.Warning;
     case ActivityPriorityEnum.LOW:
@@ -18,7 +18,7 @@ export const getDifficultyColor = (priority: ActivityDifficultyEnum) => {
   switch (priority) {
     case ActivityDifficultyEnum.VERY_HARD:
     case ActivityDifficultyEnum.HARD:
-      return Colors.Destructive;
+      return Colors.DestructiveLight;
     case ActivityDifficultyEnum.MEDIUM:
       return Colors.Warning;
     case ActivityDifficultyEnum.EASY:

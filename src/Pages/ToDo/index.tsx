@@ -1,22 +1,57 @@
-import React, { useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 
 import Button, { ButtonTheme, ButtonType } from 'Components/Button';
 import Icon from 'Components/Icon';
+import ConfirmationModal, { ConfirmationModalType } from 'Components/Modal/ConfirmationModal';
 
+import { Activity } from 'Shared/Types/Activity';
 import { IconName } from 'Shared/Types/Icon';
 
 import AllTask from './AllTask';
-import { MOCK_TASKS } from './constants';
-import CreateTaskModal from './CreateTaskModal';
+import CreateTaskModal from './TaskFormModal/CreateTaskModal';
+import EditTaskModal from './TaskFormModal/EditTaskModal';
+import { useDeleteTask } from './TaskFormModal/utils';
 import TaskSlider from './TaskSlider';
+import { useActivitiesList } from './utils';
 
 import styles from './index.module.css';
 
 const ToDo = () => {
-  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const { allActivities, triggerFetchAllActivities } = useActivitiesList();
+  const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] = useState(false);
+  const [isEditTaskModalOpen, setIsEditTaskModalOpen] = useState(false);
+  const [openedTaskId, setOpenedTaskId] = useState<string | null>(null);
 
-  const actionOpenCreateModal = () => setIsCreateModalOpen(true);
-  const actionCloseCreateModal = () => setIsCreateModalOpen(false);
+  const actionOpenCreateTaskModal = () => setIsCreateTaskModalOpen(true);
+  const actionCloseCreateTaskModal = () => {
+    setIsCreateTaskModalOpen(false);
+    setOpenedTaskId(null);
+  };
+  const actionCloseEditTaskModal = () => {
+    setIsEditTaskModalOpen(false);
+    setOpenedTaskId(null);
+  };
+  const submitFormCallback = () => {
+    triggerFetchAllActivities();
+    actionCloseCreateTaskModal();
+  };
+
+  const actionClickTask = useCallback(async (taskId: string) => {
+    setOpenedTaskId(taskId);
+    setIsEditTaskModalOpen(true);
+  }, []);
+
+  const openedTask = useMemo(
+    () => allActivities.find((task: Activity) => task._id === openedTaskId),
+    [allActivities, openedTaskId],
+  );
+
+  const {
+    isOpenConfirmationModal,
+    actionDeleteTask,
+    actionConfirmDeleteTask,
+    actionCloseDeleteConfirmationModal,
+  } = useDeleteTask({ onDeleteTask: triggerFetchAllActivities });
 
   return (
     <>
@@ -29,7 +64,7 @@ const ToDo = () => {
           <Button
             buttonType={ButtonType.Filled}
             theme={ButtonTheme.Primary}
-            onClick={actionOpenCreateModal}
+            onClick={actionOpenCreateTaskModal}
           >
             <Icon name={IconName.Add} />
             Add New Task
@@ -38,13 +73,36 @@ const ToDo = () => {
         <br />
         <div className={styles.content}>
           <div className={styles.contentHeader}>
-            <TaskSlider title="Today Task" tasks={MOCK_TASKS} />
-            <TaskSlider title="Recommended Task" tasks={MOCK_TASKS} />
+            <TaskSlider title="Today Task" tasks={allActivities} onClickTask={actionClickTask} />
+            <TaskSlider title="Recommended Task" tasks={[]} onClickTask={actionClickTask} />
           </div>
           <AllTask />
         </div>
       </div>
-      <CreateTaskModal isOpen={isCreateModalOpen} onCloseModal={actionCloseCreateModal} />
+      <CreateTaskModal
+        isOpen={isCreateTaskModalOpen}
+        onCloseModal={actionCloseCreateTaskModal}
+        onCreateTask={submitFormCallback}
+      />
+      {openedTask && (
+        <EditTaskModal
+          isOpen={isEditTaskModalOpen}
+          initialData={openedTask}
+          actionDeleteTask={actionDeleteTask}
+          onCloseModal={actionCloseEditTaskModal}
+          onEditTask={submitFormCallback}
+        />
+      )}
+      {openedTask && (
+        <ConfirmationModal
+          isOpen={isOpenConfirmationModal}
+          confirmType={ConfirmationModalType.Danger}
+          title="Delete Task"
+          body="Are you sure want to delete this task?"
+          onConfirm={() => actionConfirmDeleteTask(openedTask._id)}
+          onCloseModal={actionCloseDeleteConfirmationModal}
+        />
+      )}
     </>
   );
 };

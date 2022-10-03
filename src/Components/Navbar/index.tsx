@@ -9,7 +9,7 @@ import Icon from 'Components/Icon';
 import { useAppDispatch, useAppSelector } from 'Redux/hooks';
 import { setAuthError, unsetUser, userSelector } from 'Redux/Slices/userSlice';
 
-import { logoutAPI } from 'Clients/auth';
+import { logoutAPI } from 'Clients/auth/logout';
 
 import { HIDE_NAVBAR_ROUTES } from 'Shared/Contants/Routes';
 import { Colors } from 'Shared/Types/Colors';

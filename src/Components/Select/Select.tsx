@@ -1,25 +1,33 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import Icon from 'Components/Icon';
 import TextInput, { TextInputSize } from 'Components/TextInput';
 
 import { Colors } from 'Shared/Types/Colors';
 import { IconName } from 'Shared/Types/Icon';
-
-import { Option, OptionValue } from './types';
+import { Option, OptionValue } from 'Shared/Types/Option';
 
 import styles from './index.module.css';
 
 interface SelectProps {
+  value?: OptionValue;
   isSearchable?: boolean;
   options: Option[];
   onSelectValue: (value: OptionValue) => void;
 }
 
-const Select = ({ isSearchable = false, options, onSelectValue }: SelectProps) => {
-  const [searchInput, setSearchInput] = useState('');
+const Select = ({ value, isSearchable = false, options, onSelectValue }: SelectProps) => {
+  const [searchInput, setSearchInput] = useState<string>('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>();
+
+  const handleSyncSearchInputWithValue = useCallback(async () => {
+    setSearchInput(value ? value.toString() : '');
+  }, [value]);
+
+  useEffect(() => {
+    if (value) handleSyncSearchInputWithValue();
+  }, [handleSyncSearchInputWithValue, value]);
 
   const handleChangeSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -28,8 +36,8 @@ const Select = ({ isSearchable = false, options, onSelectValue }: SelectProps) =
 
   const handleOpenDropdown = () => {
     setIsDropdownOpen(true);
+    inputRef.current?.focus();
   };
-  inputRef.current?.focus();
 
   const handleCloseDropdown = () => {
     setIsDropdownOpen(false);
@@ -57,7 +65,7 @@ const Select = ({ isSearchable = false, options, onSelectValue }: SelectProps) =
   );
 
   return (
-    <div className={styles.container} onBlur={handleCloseDropdown}>
+    <div className={styles.container} onBlur={handleCloseDropdown} tabIndex={0}>
       <div
         className={styles.inputContainer}
         onClick={!isSearchable ? actionToggleDropdown : () => null}
@@ -89,7 +97,7 @@ const Select = ({ isSearchable = false, options, onSelectValue }: SelectProps) =
                 {showOptions.map((option: Option) => (
                   <div
                     className={styles.optionItem}
-                    key={option.value}
+                    key={option.label}
                     onClick={() => actionClickOption(option)}
                   >
                     {option.label}

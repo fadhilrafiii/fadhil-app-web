@@ -1,0 +1,21 @@
+.showOptional {
+  color: var(--color-grey-dark);
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: max-content;
+  margin: 0 auto;
+  padding-left: var(--padding-m);
+  transition: border .4s;
+  border-radius: 4px;
+}
+
+.showOptional:hover {
+  background-color: var(--color-grey);
+}
+
+.activityTypeRadio {
+  padding: var(--padding-m) 0;
+}

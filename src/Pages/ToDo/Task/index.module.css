@@ -3,12 +3,20 @@
   margin: var(--padding-l) 0;
 }
 
+.body li {
+  font-size: 12px;
+}
+
+.header h4 {
+  text-decoration: underline;
+}
+
 .body * {
   font-size: 14px;
 }
 
 .description {
-  margin-bottom: var(--padding-m);
+  margin: var(--padding-m) 0;
 }
 
 .footer * {
@@ -25,7 +33,13 @@
   font-size: 13px !important;
 }
 
-.emptySubtask {
+.levelText {
+  filter: drop-shadow(1px 1px var(--color-grey-dark));
+  font-weight: 700;
+  padding: 0 var(--padding-s);
+}
+
+.emptySubTask {
   color: var(--color-grey-dark);
   font-size: 12px;
 }

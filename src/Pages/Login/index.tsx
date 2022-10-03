@@ -10,7 +10,7 @@ import TextInput from 'Components/TextInput';
 import { useAppDispatch, useAppSelector } from 'Redux/hooks';
 import { setAuthError, setAuthLoading, setUser, userSelector } from 'Redux/Slices/userSlice';
 
-import { loginAPI, LoginData } from 'Clients/auth';
+import { loginAPI, LoginData } from 'Clients/auth/login';
 
 import styles from './index.module.css';
 

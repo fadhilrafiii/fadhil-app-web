@@ -5,6 +5,7 @@ export enum Colors {
   Secondary = 'rgb(36, 36, 36)',
   Destructive = 'rgba(210,0,0,1)',
   DestructiveDark = 'rgba(160,0,0,1)',
+  DestructiveLight = 'rgb(255, 94, 94)',
   Light = '#fff',
   Dark = 'rgb(54, 54, 54)',
   Dark50 = 'rgb(54, 54, 54, 0.8)',

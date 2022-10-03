@@ -11,11 +11,11 @@ export interface RegisterData {
   avatar?: string;
 }
 
-export const registerAPI = async (data: RegisterData) => {
+export const registerAPI = async (data: RegisterData): Promise<AxiosResponse> => {
   try {
     const res = await axios.post('/auth/register', data);
 
-    return res;
+    return res.data;
   } catch (err) {
     throw (err as AxiosError)?.response as AxiosResponse;
   }
