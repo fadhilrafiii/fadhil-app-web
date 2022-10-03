@@ -18,8 +18,6 @@ const TaskItem = ({ task, onClickTask }: TaskProps) => {
   const priorityColor = getPriorityColor(task.priority);
   const difficultyColor = getDifficultyColor(task.difficulty);
 
-  console.log(task.schedule, dayjs(task.schedule).format('YYYY-MM-DD'));
-
   return (
     <Note color={task.color} onClickNote={() => onClickTask(task._id)}>
       <div className={styles.header}>
