@@ -7,6 +7,7 @@ import { RiArrowDropUpLine } from '@react-icons/all-files/ri/RiArrowDropUpLine';
 import { RiCalendarTodoFill } from '@react-icons/all-files/ri/RiCalendarTodoFill';
 import { RiChat3Fill } from '@react-icons/all-files/ri/RiChat3Fill';
 import { RiCloseFill } from '@react-icons/all-files/ri/RiCloseFill';
+import { RiFilter2Fill } from '@react-icons/all-files/ri/RiFilter2Fill';
 import { RiLogoutBoxLine } from '@react-icons/all-files/ri/RiLogoutBoxLine';
 import { RiMoneyDollarBoxFill } from '@react-icons/all-files/ri/RiMoneyDollarBoxFill';
 import { RiNotification3Fill } from '@react-icons/all-files/ri/RiNotification3Fill';
@@ -38,6 +39,8 @@ const Icon = ({ name, size = 24, color = '#fff' }: IconProps) => {
       return <RiLogoutBoxLine size={size} fill={color} />;
     case IconName.Exclamation:
       return <BsExclamationCircleFill size={size} fill={color} />;
+    case IconName.Filter:
+      return <RiFilter2Fill size={size} fill={color} />;
     case IconName.Money:
       return <RiMoneyDollarBoxFill size={size} fill={color} />;
     case IconName.Notification:

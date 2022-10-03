@@ -4,23 +4,27 @@ import Button, { ButtonTheme, ButtonType } from 'Components/Button';
 import Icon from 'Components/Icon';
 import ConfirmationModal, { ConfirmationModalType } from 'Components/Modal/ConfirmationModal';
 
-import { Activity } from 'Shared/Types/Activity';
 import { IconName } from 'Shared/Types/Icon';
+import { Task } from 'Shared/Types/Task';
 
 import AllTask from './AllTask';
+import ChooseSectionModal from './ChooseSectionModal';
 import CreateTaskModal from './TaskFormModal/CreateTaskModal';
 import EditTaskModal from './TaskFormModal/EditTaskModal';
 import TaskSlider from './TaskSlider';
-import { useActivitiesList, useDeleteTask } from './utils';
+import { useDeleteTask, useTaskList } from './utils';
 
 import styles from './index.module.css';
 
 const ToDo = () => {
-  const { allActivities, triggerFetchAllActivities } = useActivitiesList();
+  const { tasks, sectionTasks, triggerFetchTasks } = useTaskList();
   const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] = useState(false);
   const [isEditTaskModalOpen, setIsEditTaskModalOpen] = useState(false);
+  const [isChooseSectionTaskModalOpen, setIsChooseSectionTaskModalOpen] = useState(false);
   const [openedTaskId, setOpenedTaskId] = useState<string | null>(null);
 
+  const actionOpenChooseSectionTaskModal = () => setIsChooseSectionTaskModalOpen(true);
+  const actionCloseChooseSectionTaskModal = () => setIsChooseSectionTaskModalOpen(false);
   const actionOpenCreateTaskModal = () => setIsCreateTaskModalOpen(true);
   const actionCloseCreateTaskModal = () => {
     setIsCreateTaskModalOpen(false);
@@ -30,8 +34,8 @@ const ToDo = () => {
     setIsEditTaskModalOpen(false);
     setOpenedTaskId(null);
   };
-  const submitFormCallback = () => {
-    triggerFetchAllActivities();
+  const onChangeDataCallback = () => {
+    triggerFetchTasks();
     actionCloseCreateTaskModal();
   };
 
@@ -41,16 +45,17 @@ const ToDo = () => {
   }, []);
 
   const openedTask = useMemo(
-    () => allActivities.find((task: Activity) => task._id === openedTaskId),
-    [allActivities, openedTaskId],
+    () => tasks.find((task: Task) => task._id === openedTaskId),
+    [openedTaskId, tasks],
   );
 
   const {
+    isLoading: isLoadingDeleteTask,
     isOpenConfirmationModal,
     actionDeleteTask,
     actionConfirmDeleteTask,
     actionCloseDeleteConfirmationModal,
-  } = useDeleteTask({ onDeleteTask: triggerFetchAllActivities });
+  } = useDeleteTask({ onDeleteTask: onChangeDataCallback });
 
   return (
     <>
@@ -60,33 +65,48 @@ const ToDo = () => {
             <h1>To Do</h1>
             <h5 className={styles.subtitle}>Manage your work here!</h5>
           </div>
-          <Button
-            buttonType={ButtonType.Filled}
-            theme={ButtonTheme.Primary}
-            onClick={actionOpenCreateTaskModal}
-          >
-            <Icon name={IconName.Add} />
-            Add New Task
-          </Button>
+          <div className={styles.headerButtonGroup}>
+            <Button
+              buttonType={ButtonType.Filled}
+              theme={ButtonTheme.Secondary}
+              onClick={actionOpenChooseSectionTaskModal}
+            >
+              <Icon name={IconName.Filter} />
+              Choose Section
+            </Button>
+            <Button
+              buttonType={ButtonType.Filled}
+              theme={ButtonTheme.Primary}
+              onClick={actionOpenCreateTaskModal}
+            >
+              <Icon name={IconName.Add} />
+              Add New Task
+            </Button>
+          </div>
         </div>
         <br />
         <div className={styles.content}>
-          <TaskSlider title="Today Task" tasks={allActivities} onClickTask={actionClickTask} />
+          <TaskSlider title="Today Task" tasks={sectionTasks} onClickTask={actionClickTask} />
           <AllTask />
         </div>
       </div>
       <CreateTaskModal
         isOpen={isCreateTaskModalOpen}
         onCloseModal={actionCloseCreateTaskModal}
-        onCreateTask={submitFormCallback}
+        onCreateTask={onChangeDataCallback}
+      />
+      <ChooseSectionModal
+        isOpen={isChooseSectionTaskModalOpen}
+        onCloseModal={actionCloseChooseSectionTaskModal}
       />
       {openedTask && (
         <EditTaskModal
           isOpen={isEditTaskModalOpen}
           initialData={openedTask}
+          isDeletingTask={isLoadingDeleteTask}
           actionDeleteTask={actionDeleteTask}
           onCloseModal={actionCloseEditTaskModal}
-          onEditTask={submitFormCallback}
+          onEditTask={onChangeDataCallback}
         />
       )}
       {openedTask && (

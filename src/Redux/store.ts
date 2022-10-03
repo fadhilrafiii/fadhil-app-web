@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import appSlice from './Slices/appSlice';
 import snackbarReducer from './Slices/snackbarSlice';
+import taskReducer from './Slices/taskSlice';
 import userReducer from './Slices/userSlice';
 
 const store = configureStore({
@@ -9,6 +10,7 @@ const store = configureStore({
     user: userReducer,
     app: appSlice,
     snackbar: snackbarReducer,
+    task: taskReducer,
   },
 });
 

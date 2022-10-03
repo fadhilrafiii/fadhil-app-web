@@ -2,49 +2,45 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { AxiosResponse } from 'axios';
 
+import { useAppDispatch, useAppSelector } from 'Redux/hooks';
 import { setAppLoading } from 'Redux/Slices/appSlice';
 import { showSnackbar } from 'Redux/Slices/snackbarSlice';
+import { setAllTasks, setSectionTasks, taskSelector, triggerFetch } from 'Redux/Slices/taskSlice';
 
-import { deleteActivity } from 'Clients/activity/delete';
-import { getListActivities } from 'Clients/activity/list';
+import { deleteTask } from 'Clients/task/delete';
+import { getTasks } from 'Clients/task/list';
 
-import { Activity } from 'Shared/Types/Activity';
-import { FetchData } from 'Shared/Types/FetchData';
-
-import { useAppDispatch } from './../../Redux/hooks';
-
-export const useActivitiesList = () => {
+export const useTaskList = () => {
+  const { shouldFetchData, section, sectionTasks, tasks } = useAppSelector(taskSelector);
   const dispatch = useAppDispatch();
 
-  const [allActivities, setAllActivities] = useState<FetchData<Activity[]>>({
-    shouldFetchData: true,
-    data: [],
-  });
-
-  const getAllActivitiesList = useCallback(async () => {
+  const getSectionTasks = useCallback(async () => {
     dispatch(setAppLoading(true));
-    await getListActivities()
-      .then((res: AxiosResponse) => {
-        setAllActivities({
-          shouldFetchData: false,
-          data: res.data,
-        });
-      })
+    await getTasks({ type: section })
+      .then((res: AxiosResponse) => dispatch(setSectionTasks(res.data)))
+      .finally(() => dispatch(setAppLoading(false)));
+  }, [dispatch, section]);
+
+  const getAllTasks = useCallback(async () => {
+    dispatch(setAppLoading(true));
+    await getTasks()
+      .then((res: AxiosResponse) => dispatch(setAllTasks(res.data)))
       .finally(() => dispatch(setAppLoading(false)));
   }, [dispatch]);
 
-  const triggerFetchAllActivities = () =>
-    setAllActivities((prev: FetchData<Activity[]>) => ({ ...prev, shouldFetchData: true }));
+  const triggerFetchTasks = () => dispatch(triggerFetch());
 
   useEffect(() => {
-    if (allActivities.shouldFetchData) {
-      getAllActivitiesList();
+    if (shouldFetchData) {
+      getAllTasks();
+      getSectionTasks();
     }
-  }, [allActivities.shouldFetchData, dispatch, getAllActivitiesList]);
+  }, [dispatch, getAllTasks, getSectionTasks, shouldFetchData]);
 
   return {
-    allActivities: allActivities.data,
-    triggerFetchAllActivities,
+    sectionTasks,
+    tasks,
+    triggerFetchTasks,
   };
 };
 
@@ -62,7 +58,7 @@ export const useDeleteTask = ({ onDeleteTask }: UseDeleteTaskFormProps) => {
 
   const actionConfirmDeleteTask = async (taskId: string) => {
     setIsLoading(true);
-    await deleteActivity(taskId)
+    await deleteTask(taskId)
       .then(() => {
         dispatch(
           showSnackbar({

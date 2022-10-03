@@ -1,12 +1,12 @@
-import { ActivityDifficultyEnum, ActivityPriorityEnum } from 'Shared/Types/Activity';
 import { FormField } from 'Shared/Types/Form';
+import { TaskDifficultyEnum, TaskPriorityEnum } from 'Shared/Types/Task';
 
 export interface TaskFormField {
   name: FormField<string>;
   description: FormField<string>;
-  priority: FormField<ActivityPriorityEnum | undefined>;
+  priority: FormField<TaskPriorityEnum | undefined>;
   deadline: FormField<Date | undefined>;
-  difficulty: FormField<ActivityDifficultyEnum | undefined>;
+  difficulty: FormField<TaskDifficultyEnum | undefined>;
   schedule: FormField<Date | undefined>;
   prerequisites: FormField<[]>;
   subTask: FormField<string[]>;

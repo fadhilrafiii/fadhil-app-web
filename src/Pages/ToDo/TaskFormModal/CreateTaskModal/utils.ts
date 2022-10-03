@@ -1,14 +1,15 @@
 import { useState } from 'react';
 
+import { useAppDispatch } from 'Redux/hooks';
 import { showSnackbar } from 'Redux/Slices/snackbarSlice';
 
-import { createActivity, CreateTaskActivityPayload } from 'Clients/activity/create';
+import { createTask, CreateTaskTaskPayload } from 'Clients/task/create';
 
-import { ACTIVITY_TYPE_OPTIONS } from 'Shared/Contants/Activity';
+import { TASK_TYPE_OPTIONS } from 'Shared/Contants/Task';
+import dayjs from 'Shared/Helpers/datetime';
 import { OptionValue } from 'Shared/Types/Option';
 
 import { TaskFormField } from '../types';
-import { useAppDispatch } from './../../../../Redux/hooks';
 import { TASK_FORM_ENTRIES } from './constants';
 
 interface UseTaskFormFieldTaskFormProps {
@@ -74,25 +75,25 @@ export const useCreateTaskForm = ({ onCreateTask }: UseTaskFormFieldTaskFormProp
       ...prev,
       isHabit: {
         ...prev.isHabit,
-        value: value === ACTIVITY_TYPE_OPTIONS[0].value,
+        value: value === TASK_TYPE_OPTIONS[0].value,
       },
     }));
   };
 
   const handleSubmitCreateTaskForm = async () => {
     setIsLoading(true);
-    const payload: CreateTaskActivityPayload = {
+    const payload: CreateTaskTaskPayload = {
       name: taskEntries.name.value,
       description: taskEntries.description.value,
       priority: taskEntries.priority.value,
       difficulty: taskEntries.difficulty.value,
       subTask: taskEntries.subTask.value,
-      schedule: taskEntries.schedule.value,
-      deadline: taskEntries.deadline.value,
+      schedule: dayjs(taskEntries.schedule.value).toDate(),
+      deadline: dayjs(taskEntries.deadline.value).toDate(),
       isHabit: taskEntries.isHabit.value,
     };
 
-    await createActivity(payload)
+    await createTask(payload)
       .then(() => {
         dispatch(
           showSnackbar({

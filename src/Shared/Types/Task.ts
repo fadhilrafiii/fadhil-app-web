@@ -1,4 +1,4 @@
-export enum ActivityPriorityEnum {
+export enum TaskPriorityEnum {
   VERY_HIGH = 'Very High',
   HIGH = 'High',
   MEDIUM = 'Medium',
@@ -6,7 +6,7 @@ export enum ActivityPriorityEnum {
   VERY_LOW = 'Very Low',
 }
 
-export enum ActivityDifficultyEnum {
+export enum TaskDifficultyEnum {
   VERY_HARD = 'Very Hard',
   HARD = 'Hard',
   MEDIUM = 'Medium',
@@ -14,7 +14,13 @@ export enum ActivityDifficultyEnum {
   VERY_EASY = 'Very Easy',
 }
 
-export interface Activity {
+export enum TaskSectionEnum {
+  Today = 'Today',
+  Recommended = 'Recommended',
+  Habits = 'Habits',
+}
+
+export interface Task {
   _id: string;
   name: string;
   description: string;
@@ -24,7 +30,7 @@ export interface Activity {
   subTask: string[];
   isHabit: boolean;
   isDone?: boolean;
-  difficulty: ActivityDifficultyEnum;
-  priority: ActivityPriorityEnum;
+  difficulty: TaskDifficultyEnum;
+  priority: TaskPriorityEnum;
   color?: string;
 }

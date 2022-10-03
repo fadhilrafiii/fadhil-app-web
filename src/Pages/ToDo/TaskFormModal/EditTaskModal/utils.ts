@@ -2,17 +2,17 @@ import { useState } from 'react';
 
 import { showSnackbar } from 'Redux/Slices/snackbarSlice';
 
-import { editActivity, EditActivityPayload } from 'Clients/activity/edit';
+import { editTask, EditTaskPayload } from 'Clients/task/edit';
 
-import { ACTIVITY_TYPE_OPTIONS } from 'Shared/Contants/Activity';
-import { Activity } from 'Shared/Types/Activity';
+import { TASK_TYPE_OPTIONS } from 'Shared/Contants/Task';
 import { OptionValue } from 'Shared/Types/Option';
+import { Task } from 'Shared/Types/Task';
 
 import { TaskFormField } from '../types';
 import { useAppDispatch } from './../../../../Redux/hooks';
 
 interface UseEditTaskFormProps {
-  initialData: Activity;
+  initialData: Task;
   onEditTask: () => void;
 }
 
@@ -117,14 +117,14 @@ export const useEditTaskForm = ({ initialData, onEditTask }: UseEditTaskFormProp
       ...prev,
       isHabit: {
         ...prev.isHabit,
-        value: value === ACTIVITY_TYPE_OPTIONS[0].value,
+        value: value === TASK_TYPE_OPTIONS[0].value,
       },
     }));
   };
 
   const handleSubmitEditTaskForm = async () => {
     setIsLoading(true);
-    const payload: EditActivityPayload = {
+    const payload: EditTaskPayload = {
       name: taskEntries.name.value,
       description: taskEntries.description.value,
       priority: taskEntries.priority.value,
@@ -135,7 +135,7 @@ export const useEditTaskForm = ({ initialData, onEditTask }: UseEditTaskFormProp
       isHabit: taskEntries.isHabit.value,
     };
 
-    await editActivity(initialData._id, payload)
+    await editTask(initialData._id, payload)
       .then(() => {
         dispatch(
           showSnackbar({

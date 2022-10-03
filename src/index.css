@@ -9,7 +9,8 @@
   --color-primary: rgb(57, 83, 162);
   --color-primary-dark: rgb(39, 59, 121);
   --color-primary-light: rgb(100, 124, 195);
-  --color-secondary: rgb(36, 36, 36);
+  --color-secondary: rgb(40, 40, 40);
+  --color-secondary-dark: rgb(0, 0, 0);
   --color-destructive: rgb(210, 0, 0);
   --color-destructive-dark: rgb(160, 0, 0);
   --color-destructive-light: rgb(255, 94, 94);

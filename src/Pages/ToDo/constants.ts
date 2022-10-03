@@ -1,13 +1,13 @@
-import { Activity } from 'Shared/Types/Activity';
+import { Task } from 'Shared/Types/Task';
 
-export const MOCK_TASKS: Activity[] = [
+export const MOCK_TASKS: Task[] = [
   // {
   //   _id: '1',
   //   name: 'Dummy Task',
   //   description: 'This is just a dummy task',
-  //   priority: ActivityPriorityEnum.HIGH,
+  //   priority: TaskPriorityEnum.HIGH,
   //   deadline: new Date(),
-  //   difficulty: ActivityDifficultyEnum.HARD,
+  //   difficulty: TaskDifficultyEnum.HARD,
   //   schedule: new Date(),
   //   prerequisites: [],
   //   subTask: [],
@@ -18,9 +18,9 @@ export const MOCK_TASKS: Activity[] = [
   //   _id: '2',
   //   name: 'Dummy Task 2',
   //   description: 'This is just a dummy task 2',
-  //   priority: ActivityPriorityEnum.HIGH,
+  //   priority: TaskPriorityEnum.HIGH,
   //   deadline: new Date(),
-  //   difficulty: ActivityDifficultyEnum.HARD,
+  //   difficulty: TaskDifficultyEnum.HARD,
   //   schedule: new Date(),
   //   prerequisites: [],
   //   subTask: [],
@@ -31,9 +31,9 @@ export const MOCK_TASKS: Activity[] = [
   //   _id: '3',
   //   name: 'Dummy Task 3',
   //   description: 'This is just a dummy task 3',
-  //   priority: ActivityPriorityEnum.HIGH,
+  //   priority: TaskPriorityEnum.HIGH,
   //   deadline: new Date(),
-  //   difficulty: ActivityDifficultyEnum.HARD,
+  //   difficulty: TaskDifficultyEnum.HARD,
   //   schedule: new Date(),
   //   prerequisites: [],
   //   subTask: [],
@@ -44,9 +44,9 @@ export const MOCK_TASKS: Activity[] = [
   //   _id: '4',
   //   name: 'Dummy Task 4',
   //   description: 'This is just a dummy task 4',
-  //   priority: ActivityPriorityEnum.HIGH,
+  //   priority: TaskPriorityEnum.HIGH,
   //   deadline: new Date(),
-  //   difficulty: ActivityDifficultyEnum.HARD,
+  //   difficulty: TaskDifficultyEnum.HARD,
   //   schedule: new Date(),
   //   prerequisites: [],
   //   subTask: [],

@@ -2,18 +2,19 @@ import React from 'react';
 
 import Note from 'Components/Note';
 
-import { Activity } from 'Shared/Types/Activity';
+import dayjs from 'Shared/Helpers/datetime';
+import { Task } from 'Shared/Types/Task';
 
 import { getDifficultyColor, getPriorityColor } from './utils';
 
 import styles from './index.module.css';
 
 interface TaskProps {
-  task: Activity;
+  task: Task;
   onClickTask: (taskId: string) => void;
 }
 
-const Task = ({ task, onClickTask }: TaskProps) => {
+const TaskItem = ({ task, onClickTask }: TaskProps) => {
   const priorityColor = getPriorityColor(task.priority);
   const difficultyColor = getDifficultyColor(task.difficulty);
 
@@ -54,15 +55,15 @@ const Task = ({ task, onClickTask }: TaskProps) => {
       <div className={styles.footer}>
         <div>
           <span>Schedule: </span>&nbsp;
-          <span>{task.schedule?.toString() || 'N/A'}</span>
+          <span>{dayjs(task.schedule).format('YYYY/MM/DD') || 'N/A'}</span>
         </div>
         <div>
           <span>Deadline: </span>&nbsp;
-          <span>{task.deadline?.toString() || 'N/A'}</span>
+          <span>{dayjs(task.deadline).format('YYYY/MM/DD HH:mm') || 'N/A'}</span>
         </div>
       </div>
     </Note>
   );
 };
 
-export default Task;
+export default TaskItem;

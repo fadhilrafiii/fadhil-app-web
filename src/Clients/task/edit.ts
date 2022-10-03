@@ -2,9 +2,9 @@ import { AxiosError, AxiosResponse } from 'axios';
 
 import axios from 'Clients/axios';
 
-import { ActivityDifficultyEnum, ActivityPriorityEnum } from 'Shared/Types/Activity';
+import { TaskDifficultyEnum, TaskPriorityEnum } from 'Shared/Types/Task';
 
-export interface EditActivityPayload {
+export interface EditTaskPayload {
   name?: string;
   description?: string;
   deadline?: Date;
@@ -12,11 +12,11 @@ export interface EditActivityPayload {
   // prerequisites: []; TODO: Add prerequisites
   subTask?: string[];
   isHabit?: boolean;
-  difficulty?: ActivityDifficultyEnum;
-  priority?: ActivityPriorityEnum;
+  difficulty?: TaskDifficultyEnum;
+  priority?: TaskPriorityEnum;
 }
 
-export const editActivity = async (taskId: string, payload: EditActivityPayload) => {
+export const editTask = async (taskId: string, payload: EditTaskPayload) => {
   try {
     const res = await axios.put(`/activities/${taskId}`, payload);
 

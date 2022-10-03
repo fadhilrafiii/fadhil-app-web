@@ -4,16 +4,16 @@ import DateTimePicker from 'Components/DateTimePicker';
 import InputEntry from 'Components/InputEntry';
 import Modal from 'Components/Modal';
 import RadioGroup from 'Components/RadioGroup';
-import Select from 'Components/Select/Select';
+import Select from 'Components/Select';
 import TextInput, { TextInputSize } from 'Components/TextInput';
 
 import {
-  ACTIVITY_DIFFICULTY_OPTIONS,
-  ACTIVITY_PRIORITY_OPTIONS,
-  ACTIVITY_TYPE_OPTIONS,
-} from 'Shared/Contants/Activity';
-import { Activity } from 'Shared/Types/Activity';
+  TASK_DIFFICULTY_OPTIONS,
+  TASK_PRIORITY_OPTIONS,
+  TASK_TYPE_OPTIONS,
+} from 'Shared/Contants/Task';
 import { OptionValue } from 'Shared/Types/Option';
+import { Task } from 'Shared/Types/Task';
 
 import SubTaskField from '../SubtaskField';
 import { useEditTaskForm } from './utils';
@@ -21,7 +21,7 @@ import { useEditTaskForm } from './utils';
 import styles from '../index.module.css';
 
 interface EditTaskModalProps {
-  initialData: Activity;
+  initialData: Task;
   isDeletingTask?: boolean;
   isOpen: boolean;
   actionDeleteTask: () => void;
@@ -89,14 +89,14 @@ const EditTaskModal = ({
         <InputEntry label="Difficulty" required={difficulty.required}>
           <Select
             value={difficulty.value}
-            options={ACTIVITY_DIFFICULTY_OPTIONS}
+            options={TASK_DIFFICULTY_OPTIONS}
             onSelectValue={(value: OptionValue) => handleChangeSelectField('difficulty', value)}
           />
         </InputEntry>
         <InputEntry label="Priority" required={priority.required}>
           <Select
             value={priority.value}
-            options={ACTIVITY_PRIORITY_OPTIONS}
+            options={TASK_PRIORITY_OPTIONS}
             onSelectValue={(value: OptionValue) => handleChangeSelectField('priority', value)}
           />
         </InputEntry>
@@ -126,12 +126,10 @@ const EditTaskModal = ({
         <InputEntry label="Task Type" required={isHabit.required}>
           <RadioGroup
             name="isHabit"
-            options={ACTIVITY_TYPE_OPTIONS}
+            options={TASK_TYPE_OPTIONS}
             isHorizontal
-            selectedValue={
-              isHabit.value ? ACTIVITY_TYPE_OPTIONS[0].value : ACTIVITY_TYPE_OPTIONS[1].value
-            }
-            className={styles.activityTypeRadio}
+            selectedValue={isHabit.value ? TASK_TYPE_OPTIONS[0].value : TASK_TYPE_OPTIONS[1].value}
+            className={styles.taskTypeRadio}
             onChange={handleChangeRadioField}
           />
         </InputEntry>

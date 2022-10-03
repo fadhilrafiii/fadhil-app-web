@@ -7,6 +7,7 @@ export enum IconName {
   Close = 'Close',
   Exclamation = 'Exclamation',
   Exit = 'Exit',
+  Filter = 'Filter',
   Money = 'Money',
   Notification = 'Notification',
   Setting = 'Setting',
