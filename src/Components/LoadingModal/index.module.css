@@ -1,0 +1,88 @@
+.modalOverlay {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-dark80);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modalContainer {
+  position: relative;
+  width: 320px;
+  background-color: var(--color-light);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: var(--padding-xxxl);
+  gap: var(--padding-xl);
+}
+
+.loadingContainer {
+  width: 120px;
+}
+
+.loadingText {
+  position: relative;
+  display: inline-block;
+  margin-top: -8px;
+  animation-name: changeColor;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.loadingText > span {
+  display: inline-block;
+  height: 40px;
+  margin: var(--padding-s);
+  animation-name: dotAnimation;
+  animation-duration: .5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  font-size: 40px;
+}
+
+.loadingText > span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.loadingText > span:nth-child(2) {
+  animation-delay: .2s;
+}
+
+.loadingText > span:nth-child(3) {
+  animation-delay: .4s;
+}
+
+@keyframes dotAnimation {
+  0% {
+    color: var(--color-primary-dark);
+    transform: translateY(0);
+  }
+  50% {
+    color: var(--color-primary);
+  }
+  100% {
+    color: var(--color-primary-light);
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes changeColor {
+  0% {
+    color: var(--color-primary-dark);
+  }
+  50% {
+    color: var(--color-primary);
+  }
+  100% {
+    color: var(--color-primary-light);
+  }
+}
