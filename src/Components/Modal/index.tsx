@@ -11,9 +11,11 @@ interface ModalProps {
   shouldHideHeader?: boolean;
   primaryButtonTitle?: string;
   secondaryButtonTitle?: string;
+  leftButtonTitle?: string;
   onCloseModal: () => void;
   onPrimaryButtonClick?: () => void;
   onSecondaryButtonClick?: () => void;
+  onLeftButtonClick?: () => void;
 }
 
 const Modal = ({
@@ -23,8 +25,10 @@ const Modal = ({
   shouldHideHeader,
   primaryButtonTitle,
   secondaryButtonTitle,
+  leftButtonTitle,
   onPrimaryButtonClick,
   onSecondaryButtonClick,
+  onLeftButtonClick,
   onCloseModal,
 }: ModalProps) => {
   if (!isOpen) return null;
@@ -46,24 +50,37 @@ const Modal = ({
         )}
         <div className={styles.modalBody}>{children}</div>
         <div className={styles.modalFooter}>
-          {secondaryButtonTitle && onSecondaryButtonClick && (
-            <Button
-              theme={ButtonTheme.Destructive}
-              buttonType={ButtonType.Outlined}
-              onClick={onSecondaryButtonClick}
-            >
-              {secondaryButtonTitle}
-            </Button>
-          )}
-          {primaryButtonTitle && onPrimaryButtonClick && (
-            <Button
-              theme={ButtonTheme.Primary}
-              buttonType={ButtonType.Filled}
-              onClick={onPrimaryButtonClick}
-            >
-              {primaryButtonTitle}
-            </Button>
-          )}
+          <div className={styles.leftButtonFooter}>
+            {leftButtonTitle && onLeftButtonClick && (
+              <Button
+                theme={ButtonTheme.Destructive}
+                buttonType={ButtonType.Filled}
+                onClick={onLeftButtonClick}
+              >
+                {leftButtonTitle}
+              </Button>
+            )}
+          </div>
+          <div className={styles.rightButtonFooter}>
+            {secondaryButtonTitle && onSecondaryButtonClick && (
+              <Button
+                theme={ButtonTheme.Destructive}
+                buttonType={ButtonType.Outlined}
+                onClick={onSecondaryButtonClick}
+              >
+                {secondaryButtonTitle}
+              </Button>
+            )}
+            {primaryButtonTitle && onPrimaryButtonClick && (
+              <Button
+                theme={ButtonTheme.Primary}
+                buttonType={ButtonType.Filled}
+                onClick={onPrimaryButtonClick}
+              >
+                {primaryButtonTitle}
+              </Button>
+            )}
+          </div>
         </div>
       </div>
     </div>

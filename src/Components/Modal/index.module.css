@@ -48,6 +48,32 @@
   border-top: 1.5px solid var(--color-grey);
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
+}
+
+.leftButtonFooter, .rightButtonFooter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--padding-l);
+} 
+
+.confirmationModalContainer {
+  position: relative;
+  width: clamp(360px,60vw, 600px);
+  background-color: var(--color-light);
+  border-radius: 8px;
+  padding: var(--padding-xl);
+}
+
+.confirmationModalContainer p {
+  font-size: 18px;
+  margin-bottom: var(--padding-xxl);
+}
+
+.confirmationHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--padding-xl);
   gap: var(--padding-l);
 }
