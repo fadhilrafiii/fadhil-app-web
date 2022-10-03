@@ -6,7 +6,6 @@ import { showSnackbar } from 'Redux/Slices/snackbarSlice';
 import { createTask, CreateTaskTaskPayload } from 'Clients/task/create';
 
 import { TASK_TYPE_OPTIONS } from 'Shared/Contants/Task';
-import dayjs from 'Shared/Helpers/datetime';
 import { OptionValue } from 'Shared/Types/Option';
 
 import { TaskFormField } from '../types';
@@ -88,8 +87,8 @@ export const useCreateTaskForm = ({ onCreateTask }: UseTaskFormFieldTaskFormProp
       priority: taskEntries.priority.value,
       difficulty: taskEntries.difficulty.value,
       subTask: taskEntries.subTask.value,
-      schedule: dayjs(taskEntries.schedule.value).toDate(),
-      deadline: dayjs(taskEntries.deadline.value).toDate(),
+      schedule: taskEntries.schedule.value,
+      deadline: taskEntries.deadline.value,
       isHabit: taskEntries.isHabit.value,
     };
 

@@ -10,20 +10,28 @@ import { Option, OptionValue } from 'Shared/Types/Option';
 import styles from './index.module.css';
 
 interface SelectProps {
+  selectedLabel?: string;
   value?: OptionValue;
   isSearchable?: boolean;
   options: Option[];
   onSelectValue: (value: OptionValue) => void;
 }
 
-const Select = ({ value, isSearchable = false, options, onSelectValue }: SelectProps) => {
+const Select = ({
+  selectedLabel,
+  value,
+  isSearchable = false,
+  options,
+  onSelectValue,
+}: SelectProps) => {
   const [searchInput, setSearchInput] = useState<string>('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>();
 
   const handleSyncSearchInputWithValue = useCallback(async () => {
-    setSearchInput(value ? value.toString() : '');
-  }, [value]);
+    if (selectedLabel) setSearchInput(selectedLabel);
+    else setSearchInput(value?.toString() || '');
+  }, [value, selectedLabel]);
 
   useEffect(() => {
     if (value) handleSyncSearchInputWithValue();

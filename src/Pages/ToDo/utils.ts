@@ -38,6 +38,7 @@ export const useTaskList = () => {
   }, [dispatch, getAllTasks, getSectionTasks, shouldFetchData]);
 
   return {
+    section,
     sectionTasks,
     tasks,
     triggerFetchTasks,

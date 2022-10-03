@@ -4,6 +4,7 @@ import Button, { ButtonTheme, ButtonType } from 'Components/Button';
 import Icon from 'Components/Icon';
 import ConfirmationModal, { ConfirmationModalType } from 'Components/Modal/ConfirmationModal';
 
+import { TASK_SECTION_OPTIONS_LABEL } from 'Shared/Contants/Task';
 import { IconName } from 'Shared/Types/Icon';
 import { Task } from 'Shared/Types/Task';
 
@@ -17,7 +18,7 @@ import { useDeleteTask, useTaskList } from './utils';
 import styles from './index.module.css';
 
 const ToDo = () => {
-  const { tasks, sectionTasks, triggerFetchTasks } = useTaskList();
+  const { section, tasks, sectionTasks, triggerFetchTasks } = useTaskList();
   const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] = useState(false);
   const [isEditTaskModalOpen, setIsEditTaskModalOpen] = useState(false);
   const [isChooseSectionTaskModalOpen, setIsChooseSectionTaskModalOpen] = useState(false);
@@ -86,7 +87,11 @@ const ToDo = () => {
         </div>
         <br />
         <div className={styles.content}>
-          <TaskSlider title="Today Task" tasks={sectionTasks} onClickTask={actionClickTask} />
+          <TaskSlider
+            title={TASK_SECTION_OPTIONS_LABEL[section]}
+            tasks={sectionTasks}
+            onClickTask={actionClickTask}
+          />
           <AllTask />
         </div>
       </div>

@@ -18,6 +18,8 @@ const TaskItem = ({ task, onClickTask }: TaskProps) => {
   const priorityColor = getPriorityColor(task.priority);
   const difficultyColor = getDifficultyColor(task.difficulty);
 
+  console.log(task.schedule, dayjs(task.schedule).format('YYYY-MM-DD'));
+
   return (
     <Note color={task.color} onClickNote={() => onClickTask(task._id)}>
       <div className={styles.header}>
@@ -55,11 +57,11 @@ const TaskItem = ({ task, onClickTask }: TaskProps) => {
       <div className={styles.footer}>
         <div>
           <span>Schedule: </span>&nbsp;
-          <span>{dayjs(task.schedule).format('YYYY/MM/DD') || 'N/A'}</span>
+          <span>{task.schedule ? dayjs(task.schedule).format('YYYY/MM/DD') : 'N/A'}</span>
         </div>
         <div>
           <span>Deadline: </span>&nbsp;
-          <span>{dayjs(task.deadline).format('YYYY/MM/DD HH:mm') || 'N/A'}</span>
+          <span>{task.deadline ? dayjs(task.deadline).format('YYYY/MM/DD HH:mm') : 'N/A'}</span>
         </div>
       </div>
     </Note>

@@ -3,8 +3,12 @@ import React, { useState } from 'react';
 import Modal from 'Components/Modal';
 import Select from 'Components/Select';
 
-import { TASK_SECTION_OPTIONS } from 'Shared/Contants/Task';
+import { useAppDispatch } from 'Redux/hooks';
+import { setSection } from 'Redux/Slices/taskSlice';
+
+import { TASK_SECTION_OPTIONS, TASK_SECTION_OPTIONS_LABEL } from 'Shared/Contants/Task';
 import { OptionValue } from 'Shared/Types/Option';
+import { TaskSectionEnum } from 'Shared/Types/Task';
 
 interface FilterTaskModalProps {
   isOpen: boolean;
@@ -12,10 +16,14 @@ interface FilterTaskModalProps {
 }
 
 const ChooseSectionModal = ({ isOpen, onCloseModal }: FilterTaskModalProps) => {
-  const [selectedSection, setSelectedSection] = useState(TASK_SECTION_OPTIONS[0].value);
+  const dispatch = useAppDispatch();
+  const [selectedSection, setSelectedSection] = useState<TaskSectionEnum>(TaskSectionEnum.Today);
 
-  const handleSelectSection = (value: OptionValue) => setSelectedSection(value);
-  const handleSetSection = () => console.log(selectedSection);
+  const handleSelectSection = (value: OptionValue) => setSelectedSection(value as TaskSectionEnum);
+  const handleSetSection = () => {
+    dispatch(setSection(selectedSection));
+    onCloseModal();
+  };
 
   return (
     <Modal
@@ -28,6 +36,7 @@ const ChooseSectionModal = ({ isOpen, onCloseModal }: FilterTaskModalProps) => {
       onSecondaryButtonClick={onCloseModal}
     >
       <Select
+        selectedLabel={TASK_SECTION_OPTIONS_LABEL[selectedSection]}
         options={TASK_SECTION_OPTIONS}
         onSelectValue={handleSelectSection}
         value={selectedSection}

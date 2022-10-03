@@ -58,17 +58,23 @@ export const TASK_TYPE_OPTIONS: Option[] = [
   },
 ];
 
+export const TASK_SECTION_OPTIONS_LABEL: Record<TaskSectionEnum, string> = {
+  [TaskSectionEnum.Today]: 'Today Task',
+  [TaskSectionEnum.Recommended]: 'Recommended To Do',
+  [TaskSectionEnum.Habits]: 'My Habits',
+};
+
 export const TASK_SECTION_OPTIONS: Option[] = [
   {
-    label: TaskSectionEnum.Today,
+    label: TASK_SECTION_OPTIONS_LABEL[TaskSectionEnum.Today],
     value: TaskSectionEnum.Today,
   },
   {
-    label: TaskSectionEnum.Recommended,
+    label: TASK_SECTION_OPTIONS_LABEL[TaskSectionEnum.Recommended],
     value: TaskSectionEnum.Recommended,
   },
   {
-    label: TaskSectionEnum.Habits,
+    label: TASK_SECTION_OPTIONS_LABEL[TaskSectionEnum.Habits],
     value: TaskSectionEnum.Habits,
   },
 ];
