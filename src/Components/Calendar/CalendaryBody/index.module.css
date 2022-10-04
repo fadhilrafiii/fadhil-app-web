@@ -1,0 +1,43 @@
+.calendarDates {
+  width: 100%;
+  border: 1px solid var(--color-grey-dark);
+  border-collapse: collapse;
+}
+
+.calendarDates td {
+  width: calc(100% / 7);
+}
+
+.days td {
+  font-family: var(--font-family-heading);
+  padding: var(--padding-m);
+  font-weight: 500;
+}
+
+.days td:first-child {
+  color: var(--color-destructive);
+}
+
+.dates td {
+  position: relative;
+  border: 1px solid var(--color-grey-dark);
+  height: 160px;
+}
+
+
+
+.dateLabel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: var(--padding-s);
+}
+
+
+.dates td:first-child .dateLabel {
+  color: var(--color-destructive);
+}
+
+.notThisMonthDate {
+  opacity: .5;
+}

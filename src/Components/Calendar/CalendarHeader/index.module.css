@@ -1,0 +1,38 @@
+.container {
+  width: 100%;
+  padding: var(--padding-m) var(--padding-xxxl);
+  background-color: var(--color-secondary);
+  border-radius: 8px 8px 0 0;
+}
+
+.container * {
+  color: var(--color-light);
+}
+
+.monthContainer, .yearContainer {
+  width: 100%;
+  padding: var(--padding-s);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--padding-xl);
+}
+
+.headerText {
+  font-weight: 400;
+}
+
+.arrowBtn {
+  cursor: pointer;
+  border-radius: 100%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all .3s;
+}
+
+.arrowBtn:hover {
+  background-color: var(--color-grey-dark);
+}
