@@ -18,6 +18,7 @@
   --color-dark: rgb(54, 54, 54);
   --color-dark80: rgba(54, 54, 54, 0.8);
   --color-grey20: rgba(225, 225, 225, 0.2);
+  --color-grey-light: rgb(240, 240, 240);
   --color-grey: rgb(225, 225, 225);
   --color-grey-dark: rgb(135, 135, 135);
   --color-success: rgb(74, 147, 74);
@@ -51,7 +52,7 @@ body {
 }
 
 #root {
-  background-color: var(--color-grey20);
+  background-color: var(--color-grey-light);
 }
 
 h1, h2, h3, h4, h5, h6, button {

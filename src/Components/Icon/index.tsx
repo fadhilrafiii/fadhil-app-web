@@ -2,8 +2,10 @@ import React from 'react';
 
 import { BsExclamationCircleFill } from '@react-icons/all-files/bs/BsExclamationCircleFill';
 import { RiAddFill } from '@react-icons/all-files/ri/RiAddFill';
-import { RiArrowDropDownLine } from '@react-icons/all-files/ri/RiArrowDropDownLine';
-import { RiArrowDropUpLine } from '@react-icons/all-files/ri/RiArrowDropUpLine';
+import { RiArrowDownSLine } from '@react-icons/all-files/ri/RiArrowDownSLine';
+import { RiArrowLeftSLine } from '@react-icons/all-files/ri/RiArrowLeftSLine';
+import { RiArrowRightSLine } from '@react-icons/all-files/ri/RiArrowRightSLine';
+import { RiArrowUpSLine } from '@react-icons/all-files/ri/RiArrowUpSLine';
 import { RiCalendarTodoFill } from '@react-icons/all-files/ri/RiCalendarTodoFill';
 import { RiChat3Fill } from '@react-icons/all-files/ri/RiChat3Fill';
 import { RiCloseFill } from '@react-icons/all-files/ri/RiCloseFill';
@@ -27,10 +29,14 @@ const Icon = ({ name, size = 24, color = '#fff' }: IconProps) => {
       return <RiAddFill size={size} fill={color} />;
     case IconName.Agenda:
       return <RiCalendarTodoFill size={size} fill={color} />;
-    case IconName.ArrowDropDown:
-      return <RiArrowDropDownLine size={size} fill={color} />;
-    case IconName.ArrowDropUp:
-      return <RiArrowDropUpLine size={size} fill={color} />;
+    case IconName.ArrowDown:
+      return <RiArrowDownSLine size={size} fill={color} />;
+    case IconName.ArrowLeft:
+      return <RiArrowLeftSLine size={size} fill={color} />;
+    case IconName.ArrowRight:
+      return <RiArrowRightSLine size={size} fill={color} />;
+    case IconName.ArrowUp:
+      return <RiArrowUpSLine size={size} fill={color} />;
     case IconName.Chat:
       return <RiChat3Fill size={size} fill={color} />;
     case IconName.Close:

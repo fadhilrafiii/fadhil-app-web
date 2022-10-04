@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useEffect, useRef, useState } from 'react';
 
 import Icon from 'Components/Icon';
 
@@ -20,25 +20,42 @@ interface DropdownProps {
 }
 
 const Dropdown = ({ children, size = DropdownSize.Auto }: DropdownProps) => {
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
 
-  const actionToggleDropdown = () => {
-    setIsOpen((prev: boolean) => !prev);
+  const actionOpenDropdown = () => {
+    setIsOpen(true);
   };
+
+  const actionCloseDropdown = () => setIsOpen(false);
+
+  useEffect(() => {
+    if (isOpen) dropdownRef.current?.focus();
+  }, [isOpen, dropdownRef]);
 
   const dropdownClasses = [styles.dropdown, styles[size]];
   if (isOpen) dropdownClasses.push(styles.dropdownOpen);
 
   return (
     <div className={styles.container}>
-      <div className={styles.dropdownButton} onClick={actionToggleDropdown}>
+      <div
+        className={styles.dropdownButton}
+        onClick={isOpen ? actionCloseDropdown : actionOpenDropdown}
+      >
         <Icon
-          name={isOpen ? IconName.ArrowDropUp : IconName.ArrowDropDown}
+          name={isOpen ? IconName.ArrowUp : IconName.ArrowDown}
           color={Colors.GreyDark}
-          size={32}
+          size={24}
         />
       </div>
-      <div className={dropdownClasses.join(' ')}>{children}</div>
+      <div
+        tabIndex={1}
+        ref={dropdownRef}
+        className={dropdownClasses.join(' ')}
+        onBlur={actionCloseDropdown}
+      >
+        {children}
+      </div>
     </div>
   );
 };

@@ -1,17 +1,25 @@
-import React, { ReactNode } from 'react';
+import React, { HTMLAttributes, ReactNode } from 'react';
 
 import styles from './index.module.css';
 
-interface InputEntryProps {
+interface InputEntryProps extends HTMLAttributes<HTMLDivElement> {
   required?: boolean;
   label: string;
   subLabel?: string;
   children: ReactNode;
+  errorMessage?: string;
 }
 
-const InputEntry = ({ label, subLabel = '', children, required = false }: InputEntryProps) => {
+const InputEntry = ({
+  label,
+  subLabel = '',
+  children,
+  required = false,
+  errorMessage,
+  ...props
+}: InputEntryProps) => {
   return (
-    <div className={styles.inputEntry}>
+    <div className={styles.inputEntry} {...props}>
       <div className={styles.inputEntryLeft}>
         <label>
           {label}
@@ -19,7 +27,10 @@ const InputEntry = ({ label, subLabel = '', children, required = false }: InputE
         </label>
         <label className={styles.subLabel}>{subLabel}</label>
       </div>
-      <div>{children}</div>
+      <div>
+        {children}
+        {errorMessage && <div className={styles.errorMessage}>{errorMessage}</div>}
+      </div>
     </div>
   );
 };

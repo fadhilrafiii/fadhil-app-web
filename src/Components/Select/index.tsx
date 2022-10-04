@@ -89,9 +89,9 @@ const Select = ({
         />
         <span className={styles.toggle} onClick={actionToggleDropdown}>
           <Icon
-            name={isDropdownOpen ? IconName.ArrowDropUp : IconName.ArrowDropDown}
+            name={isDropdownOpen ? IconName.ArrowUp : IconName.ArrowDown}
             color={Colors.GreyDark}
-            size={28}
+            size={22}
           />
         </span>
       </div>

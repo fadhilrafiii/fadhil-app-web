@@ -36,6 +36,7 @@ const Login = () => {
     async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       await dispatch(setAuthLoading(true));
+
       await loginAPI(loginData)
         .then(async (res: AxiosResponse) => {
           await dispatch(setUser(res.data));

@@ -30,7 +30,7 @@ const SubTaskField = ({ subTask, actionAddSubTask, actionRemoveSubTask }: SubTas
   };
 
   const actionClickAddSubTaskButton = () => {
-    actionAddSubTask(inputSubTask);
+    actionAddSubTask(inputSubTask.trim());
     setInputSubTask('');
   };
 
@@ -70,7 +70,7 @@ const SubTaskField = ({ subTask, actionAddSubTask, actionRemoveSubTask }: SubTas
             buttonType={ButtonType.Outlined}
             className={styles.addSubTaskButton}
             onClick={actionClickAddSubTaskButton}
-            disabled={!inputSubTask}
+            disabled={inputSubTask.trim().length === 0}
           >
             <Icon name={IconName.Add} color={Colors.Primary} size={18} />
             Add

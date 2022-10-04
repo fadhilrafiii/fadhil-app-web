@@ -4,10 +4,10 @@ import { TaskDifficultyEnum, TaskPriorityEnum } from 'Shared/Types/Task';
 export interface TaskFormField {
   name: FormField<string>;
   description: FormField<string>;
-  priority: FormField<TaskPriorityEnum | undefined>;
+  priority: FormField<TaskPriorityEnum>;
   deadline: FormField<Date | undefined>;
-  difficulty: FormField<TaskDifficultyEnum | undefined>;
-  schedule: FormField<Date | undefined>;
+  difficulty: FormField<TaskDifficultyEnum>;
+  schedule: FormField<Date>;
   prerequisites: FormField<[]>;
   subTask: FormField<string[]>;
   isHabit: FormField<boolean>;

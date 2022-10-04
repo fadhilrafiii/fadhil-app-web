@@ -13,7 +13,6 @@ export enum TextInputSize {
 }
 
 type TextInputProps = {
-  errorMessages?: string;
   inputType?: TextInputType;
   inputSize?: TextInputSize;
   isFullwidth?: boolean;
@@ -21,7 +20,6 @@ type TextInputProps = {
 } & (InputHTMLAttributes<HTMLInputElement> | TextareaHTMLAttributes<HTMLTextAreaElement>);
 
 const TextInput = ({
-  errorMessages = '',
   inputType = TextInputType.Outlined,
   inputSize = TextInputSize.Medium,
   isFullwidth = false,
@@ -47,7 +45,6 @@ const TextInput = ({
           className={classes.join(' ')}
         />
       )}
-      {errorMessages && <div className={styles.errorMessage}>{errorMessages}</div>}
     </>
   );
 };

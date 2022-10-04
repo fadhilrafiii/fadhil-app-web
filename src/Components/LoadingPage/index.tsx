@@ -6,7 +6,7 @@ import lottieLoading from './lottie-loading.json';
 
 import styles from './index.module.css';
 
-const Loading = () => {
+const Loading = React.memo(() => {
   return (
     <div className={styles.loadingContainer}>
       <Lottie
@@ -22,6 +22,6 @@ const Loading = () => {
       <h2 className={styles.loadingText}>Loading...</h2>
     </div>
   );
-};
+});
 
 export default Loading;

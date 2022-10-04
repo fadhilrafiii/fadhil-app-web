@@ -8,8 +8,8 @@ import { TASK_SECTION_OPTIONS_LABEL } from 'Shared/Contants/Task';
 import { IconName } from 'Shared/Types/Icon';
 import { Task } from 'Shared/Types/Task';
 
-import AllTask from './AllTask';
 import ChooseSectionModal from './ChooseSectionModal';
+import AllTask from './TaskCalendar';
 import CreateTaskModal from './TaskFormModal/CreateTaskModal';
 import EditTaskModal from './TaskFormModal/EditTaskModal';
 import TaskSlider from './TaskSlider';

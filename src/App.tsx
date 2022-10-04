@@ -3,7 +3,7 @@ import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import LoadingModal from 'Components/LoadingModal';
-import Loading from 'Components/LoadingPage';
+import LoadingPage from 'Components/LoadingPage';
 import { PrivateRoute, PublicRoute } from 'Components/Router';
 import Snackbar from 'Components/Snackbar';
 
@@ -20,7 +20,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<LoadingPage />}>
         <Snackbar />
         <LoadingModal isOpen={isAppLoading} />
         <Routes>

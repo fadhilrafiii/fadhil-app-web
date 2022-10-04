@@ -25,7 +25,7 @@ export interface Task {
   name: string;
   description: string;
   deadline?: Date;
-  schedule?: Date;
+  schedule: Date;
   prerequisites: [];
   subTask: string[];
   isHabit: boolean;

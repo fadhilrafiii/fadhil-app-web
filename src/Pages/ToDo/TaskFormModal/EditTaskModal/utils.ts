@@ -36,10 +36,6 @@ export const useEditTaskForm = ({ initialData, onEditTask }: UseEditTaskFormProp
       errorMessage: '',
       required: true,
     },
-    deadline: {
-      value: initialData.deadline,
-      errorMessage: '',
-    },
     difficulty: {
       value: initialData.difficulty,
       errorMessage: '',
@@ -47,6 +43,11 @@ export const useEditTaskForm = ({ initialData, onEditTask }: UseEditTaskFormProp
     },
     schedule: {
       value: initialData.schedule,
+      errorMessage: '',
+      required: true,
+    },
+    deadline: {
+      value: initialData.deadline,
       errorMessage: '',
     },
     prerequisites: {
@@ -122,11 +123,59 @@ export const useEditTaskForm = ({ initialData, onEditTask }: UseEditTaskFormProp
     }));
   };
 
+  const handleOnBlurField = (name: keyof TaskFormField) => {
+    const entry = taskEntries[name];
+    if (entry.required) {
+      setTaskEntries((prev: TaskFormField) => ({
+        ...prev,
+        [name]: {
+          ...prev[name],
+          errorMessage: prev[name].value ? '' : `${name} is required!`,
+        },
+      }));
+    }
+  };
+
+  const validateFormField = () => {
+    const keys: string[] = Object.keys(taskEntries);
+    console.log('keys', keys);
+    const invalidInputNames = keys.filter((key: string) => {
+      const entry = taskEntries[key as keyof TaskFormField];
+
+      return entry.required && !entry.value;
+    });
+
+    return {
+      isValid: invalidInputNames.length === 0,
+      invalidInputNames,
+    };
+  };
+
+  const actionClickEditTask = () => {
+    const { isValid, invalidInputNames } = validateFormField();
+    if (!isValid) {
+      const invalidInputEntries: Record<string, unknown> = {};
+      invalidInputNames.forEach((key: string) => {
+        invalidInputEntries[key] = {
+          ...taskEntries[key as keyof TaskFormField],
+          errorMessage: `${key} field is required!`,
+        };
+      });
+
+      setTaskEntries((prev: TaskFormField) => ({
+        ...prev,
+        ...invalidInputEntries,
+      }));
+      return;
+    }
+    handleSubmitEditTaskForm();
+  };
+
   const handleSubmitEditTaskForm = async () => {
     setIsLoading(true);
     const payload: EditTaskPayload = {
-      name: taskEntries.name.value,
-      description: taskEntries.description.value,
+      name: taskEntries.name.value.trim(),
+      description: taskEntries.description.value.trim(),
       priority: taskEntries.priority.value,
       difficulty: taskEntries.difficulty.value,
       subTask: taskEntries.subTask.value,
@@ -154,7 +203,8 @@ export const useEditTaskForm = ({ initialData, onEditTask }: UseEditTaskFormProp
     handleChangeSelectField,
     handleChangeDateTimeField,
     handleChangeRadioField,
-    handleSubmitEditTaskForm,
+    handleOnBlurField,
+    actionClickEditTask,
     actionAddSubTask,
     actionRemoveSubTask,
   };

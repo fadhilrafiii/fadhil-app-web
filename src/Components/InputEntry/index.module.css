@@ -27,3 +27,8 @@
 .required {
   color: var(--color-destructive);
 }
+
+.errorMessage {
+  font-size: 13px;
+  color: var(--color-destructive);
+}

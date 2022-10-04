@@ -9,7 +9,7 @@ import { RouteType } from 'Shared/Types/Route';
 
 import styles from './index.module.css';
 
-const Sidebar = () => {
+const Sidebar = React.memo(() => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -58,6 +58,6 @@ const Sidebar = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Sidebar;

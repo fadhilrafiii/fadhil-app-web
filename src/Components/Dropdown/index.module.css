@@ -11,6 +11,9 @@
   display: none;
   border-radius: 4px;
   background-color: var(--color-light);
+  overflow: hidden;
+  box-shadow: var(--box-shadow-m);
+  outline: none;
 }
 
 .dropdown > * {

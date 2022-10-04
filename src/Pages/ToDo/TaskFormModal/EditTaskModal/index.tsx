@@ -44,7 +44,8 @@ const EditTaskModal = ({
     handleChangeDateTimeField,
     handleChangeSelectField,
     handleChangeRadioField,
-    handleSubmitEditTaskForm,
+    handleOnBlurField,
+    actionClickEditTask,
     actionAddSubTask,
     actionRemoveSubTask,
   } = useEditTaskForm({ initialData, onEditTask: onEditTask });
@@ -63,11 +64,16 @@ const EditTaskModal = ({
         leftButtonTitle="Delete"
         primaryButtonLoading={isLoading}
         leftButtonLoading={isDeletingTask}
-        onPrimaryButtonClick={handleSubmitEditTaskForm}
+        onPrimaryButtonClick={actionClickEditTask}
         onSecondaryButtonClick={onCloseModal}
         onLeftButtonClick={actionDeleteTask}
       >
-        <InputEntry label="Name" required={name.required}>
+        <InputEntry
+          label="Name"
+          required={name.required}
+          errorMessage={name.errorMessage}
+          onBlur={() => handleOnBlurField('name')}
+        >
           <TextInput
             inputSize={TextInputSize.Small}
             value={name.value}
@@ -76,7 +82,12 @@ const EditTaskModal = ({
             isFullwidth
           />
         </InputEntry>
-        <InputEntry label="Description" required={description.required}>
+        <InputEntry
+          label="Description"
+          required={description.required}
+          errorMessage={description.errorMessage}
+          onBlur={() => handleOnBlurField('description')}
+        >
           <TextInput
             inputSize={TextInputSize.Small}
             numOfLines={2}
@@ -86,28 +97,36 @@ const EditTaskModal = ({
             isFullwidth
           />
         </InputEntry>
-        <InputEntry label="Difficulty" required={difficulty.required}>
+        <InputEntry
+          label="Difficulty"
+          required={difficulty.required}
+          errorMessage={difficulty.errorMessage}
+          onBlur={() => handleOnBlurField('difficulty')}
+        >
           <Select
             value={difficulty.value}
             options={TASK_DIFFICULTY_OPTIONS}
             onSelectValue={(value: OptionValue) => handleChangeSelectField('difficulty', value)}
           />
         </InputEntry>
-        <InputEntry label="Priority" required={priority.required}>
+        <InputEntry
+          label="Priority"
+          required={priority.required}
+          errorMessage={priority.errorMessage}
+          onBlur={() => handleOnBlurField('priority')}
+        >
           <Select
             value={priority.value}
             options={TASK_PRIORITY_OPTIONS}
             onSelectValue={(value: OptionValue) => handleChangeSelectField('priority', value)}
           />
         </InputEntry>
-        <InputEntry label="Subtasks" subLabel="Up to 3 subtasks" required={subTask.required}>
-          <SubTaskField
-            subTask={subTask.value}
-            actionAddSubTask={actionAddSubTask}
-            actionRemoveSubTask={actionRemoveSubTask}
-          />
-        </InputEntry>
-        <InputEntry label="Schedule" required={schedule.required}>
+        <InputEntry
+          label="Schedule"
+          required={schedule.required}
+          errorMessage={schedule.errorMessage}
+          onBlur={() => handleOnBlurField('schedule')}
+        >
           <DateTimePicker
             name="schedule"
             value={schedule.value}
@@ -121,6 +140,13 @@ const EditTaskModal = ({
             value={deadline.value}
             handleChangeDateTime={(date: Date) => handleChangeDateTimeField('deadline', date)}
             format="yyyy-MM-dd | HH:mm"
+          />
+        </InputEntry>
+        <InputEntry label="Subtasks" subLabel="Up to 3 subtasks" required={subTask.required}>
+          <SubTaskField
+            subTask={subTask.value}
+            actionAddSubTask={actionAddSubTask}
+            actionRemoveSubTask={actionRemoveSubTask}
           />
         </InputEntry>
         <InputEntry label="Task Type" required={isHabit.required}>

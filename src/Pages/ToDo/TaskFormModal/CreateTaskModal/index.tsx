@@ -37,9 +37,10 @@ const CreateTaskModal = ({ isOpen, onCloseModal, onCreateTask }: CreateTaskModal
     handleChangeDateTimeField,
     handleChangeSelectField,
     handleChangeRadioField,
-    handleSubmitCreateTaskForm,
+    handleOnBlurField,
     actionAddSubTask,
     actionRemoveSubTask,
+    actionClickCreateTask,
   } = useCreateTaskForm({ onCreateTask });
 
   const [showOptionalFields, setShowOptionalFields] = useState(false);
@@ -61,88 +62,115 @@ const CreateTaskModal = ({ isOpen, onCloseModal, onCreateTask }: CreateTaskModal
       primaryButtonTitle="Create"
       secondaryButtonTitle="Cancel"
       primaryButtonLoading={isLoading}
-      onPrimaryButtonClick={handleSubmitCreateTaskForm}
-      onSecondaryButtonClick={onCloseModal}
+      onPrimaryButtonClick={actionClickCreateTask}
+      onSecondaryButtonClick={actionCloseModal}
     >
-      <InputEntry label="Name" required={name.required}>
-        <TextInput
-          inputSize={TextInputSize.Small}
-          value={name.value}
-          name="name"
-          onChange={handleChangeTextInputField}
-          isFullwidth
-        />
-      </InputEntry>
-      <InputEntry label="Description" required={description.required}>
-        <TextInput
-          inputSize={TextInputSize.Small}
-          numOfLines={2}
-          value={description.value}
-          name="description"
-          onChange={handleChangeTextInputField}
-          isFullwidth
-        />
-      </InputEntry>
-      <InputEntry label="Difficulty" required={difficulty.required}>
-        <Select
-          value={difficulty.value}
-          options={TASK_DIFFICULTY_OPTIONS}
-          onSelectValue={(value: OptionValue) => handleChangeSelectField('difficulty', value)}
-        />
-      </InputEntry>
-      <InputEntry label="Priority" required={priority.required}>
-        <Select
-          value={priority.value}
-          options={TASK_PRIORITY_OPTIONS}
-          onSelectValue={(value: OptionValue) => handleChangeSelectField('priority', value)}
-        />
-      </InputEntry>
-      {showOptionalFields && (
-        <>
-          <InputEntry label="Subtasks" subLabel="Up to 3 subtasks" required={subTask.required}>
-            <SubTaskField
-              subTask={subTask.value}
-              actionAddSubTask={actionAddSubTask}
-              actionRemoveSubTask={actionRemoveSubTask}
-            />
-          </InputEntry>
-          <InputEntry label="Schedule" required={schedule.required}>
-            <DateTimePicker
-              name="schedule"
-              value={schedule.value}
-              handleChangeDateTime={(date: Date) => handleChangeDateTimeField('schedule', date)}
-              format="yyyy-MM-dd"
-            />
-          </InputEntry>
-          <InputEntry label="Deadline" required={deadline.required}>
-            <DateTimePicker
-              name="deadline"
-              value={deadline.value}
-              handleChangeDateTime={(date: Date) => handleChangeDateTimeField('deadline', date)}
-              format="yyyy-MM-dd | HH:mm"
-            />
-          </InputEntry>
-          <InputEntry label="Task Type" required={isHabit.required}>
-            <RadioGroup
-              name="isHabit"
-              options={TASK_TYPE_OPTIONS}
-              isHorizontal
-              selectedValue={
-                isHabit.value ? TASK_TYPE_OPTIONS[0].value : TASK_TYPE_OPTIONS[1].value
-              }
-              className={styles.taskTypeRadio}
-              onChange={handleChangeRadioField}
-            />
-          </InputEntry>
-        </>
-      )}
-      <div className={styles.showOptional} role="button" onClick={actionToggleShowOptionalField}>
-        {showOptionalFields ? 'Hide' : 'Show'} optional fields
-        <Icon
-          name={showOptionalFields ? IconName.ArrowDropUp : IconName.ArrowDropDown}
-          color={Colors.GreyDark}
-        />
-      </div>
+      <form className={styles.form}>
+        <InputEntry
+          label="Name"
+          required={name.required}
+          errorMessage={name.errorMessage}
+          onBlur={() => handleOnBlurField('name')}
+        >
+          <TextInput
+            inputSize={TextInputSize.Small}
+            value={name.value}
+            name="name"
+            onChange={handleChangeTextInputField}
+            isFullwidth
+          />
+        </InputEntry>
+        <InputEntry
+          label="Description"
+          required={description.required}
+          errorMessage={description.errorMessage}
+          onBlur={() => handleOnBlurField('description')}
+        >
+          <TextInput
+            inputSize={TextInputSize.Small}
+            numOfLines={2}
+            value={description.value}
+            name="description"
+            onChange={handleChangeTextInputField}
+            isFullwidth
+          />
+        </InputEntry>
+        <InputEntry
+          label="Difficulty"
+          required={difficulty.required}
+          errorMessage={difficulty.errorMessage}
+          onBlur={() => handleOnBlurField('difficulty')}
+        >
+          <Select
+            value={difficulty.value}
+            options={TASK_DIFFICULTY_OPTIONS}
+            onSelectValue={(value: OptionValue) => handleChangeSelectField('difficulty', value)}
+          />
+        </InputEntry>
+        <InputEntry
+          label="Priority"
+          required={priority.required}
+          errorMessage={priority.errorMessage}
+          onBlur={() => handleOnBlurField('priority')}
+        >
+          <Select
+            value={priority.value}
+            options={TASK_PRIORITY_OPTIONS}
+            onSelectValue={(value: OptionValue) => handleChangeSelectField('priority', value)}
+          />
+        </InputEntry>
+        <InputEntry
+          label="Schedule"
+          required={schedule.required}
+          errorMessage={schedule.errorMessage}
+          onBlur={() => handleOnBlurField('schedule')}
+        >
+          <DateTimePicker
+            name="schedule"
+            value={schedule.value}
+            handleChangeDateTime={(date: Date) => handleChangeDateTimeField('schedule', date)}
+            format="yyyy-MM-dd"
+          />
+        </InputEntry>
+        {showOptionalFields && (
+          <>
+            <InputEntry label="Deadline" required={deadline.required}>
+              <DateTimePicker
+                name="deadline"
+                value={deadline.value}
+                handleChangeDateTime={(date: Date) => handleChangeDateTimeField('deadline', date)}
+                format="yyyy-MM-dd | HH:mm"
+              />
+            </InputEntry>
+            <InputEntry label="Subtasks" subLabel="Up to 3 subtasks" required={subTask.required}>
+              <SubTaskField
+                subTask={subTask.value}
+                actionAddSubTask={actionAddSubTask}
+                actionRemoveSubTask={actionRemoveSubTask}
+              />
+            </InputEntry>
+            <InputEntry label="Task Type" required={isHabit.required}>
+              <RadioGroup
+                name="isHabit"
+                options={TASK_TYPE_OPTIONS}
+                isHorizontal
+                selectedValue={
+                  isHabit.value ? TASK_TYPE_OPTIONS[0].value : TASK_TYPE_OPTIONS[1].value
+                }
+                className={styles.taskTypeRadio}
+                onChange={handleChangeRadioField}
+              />
+            </InputEntry>
+          </>
+        )}
+        <div className={styles.showOptional} role="button" onClick={actionToggleShowOptionalField}>
+          {showOptionalFields ? 'Hide' : 'Show'} optional fields
+          <Icon
+            name={showOptionalFields ? IconName.ArrowUp : IconName.ArrowDown}
+            color={Colors.GreyDark}
+          />
+        </div>
+      </form>
     </Modal>
   );
 };

@@ -6,9 +6,11 @@ import { showSnackbar } from 'Redux/Slices/snackbarSlice';
 import { createTask, CreateTaskTaskPayload } from 'Clients/task/create';
 
 import { TASK_TYPE_OPTIONS } from 'Shared/Contants/Task';
+import dayjs from 'Shared/Helpers/datetime';
 import { OptionValue } from 'Shared/Types/Option';
 
 import { TaskFormField } from '../types';
+import { TaskDifficultyEnum, TaskPriorityEnum } from './../../../../Shared/Types/Task';
 import { TASK_FORM_ENTRIES } from './constants';
 
 interface UseTaskFormFieldTaskFormProps {
@@ -17,6 +19,7 @@ interface UseTaskFormFieldTaskFormProps {
 
 export const useCreateTaskForm = ({ onCreateTask }: UseTaskFormFieldTaskFormProps) => {
   const dispatch = useAppDispatch();
+
   const [isLoading, setIsLoading] = useState(false);
   const [taskEntries, setTaskEntries] = useState<TaskFormField>(TASK_FORM_ENTRIES);
 
@@ -79,11 +82,39 @@ export const useCreateTaskForm = ({ onCreateTask }: UseTaskFormFieldTaskFormProp
     }));
   };
 
+  const handleOnBlurField = (name: keyof TaskFormField) => {
+    const entry = taskEntries[name];
+    if (entry.required) {
+      setTaskEntries((prev: TaskFormField) => ({
+        ...prev,
+        [name]: {
+          ...prev[name],
+          errorMessage: prev[name].value ? '' : `${name} is required!`,
+        },
+      }));
+    }
+  };
+
+  const validateFormField = () => {
+    const keys: string[] = Object.keys(taskEntries);
+    console.log('keys', keys);
+    const invalidInputNames = keys.filter((key: string) => {
+      const entry = taskEntries[key as keyof TaskFormField];
+
+      return entry.required && !entry.value;
+    });
+
+    return {
+      isValid: invalidInputNames.length === 0,
+      invalidInputNames,
+    };
+  };
+
   const handleSubmitCreateTaskForm = async () => {
     setIsLoading(true);
     const payload: CreateTaskTaskPayload = {
-      name: taskEntries.name.value,
-      description: taskEntries.description.value,
+      name: taskEntries.name.value.trim(),
+      description: taskEntries.description.value.trim(),
       priority: taskEntries.priority.value,
       difficulty: taskEntries.difficulty.value,
       subTask: taskEntries.subTask.value,
@@ -105,7 +136,72 @@ export const useCreateTaskForm = ({ onCreateTask }: UseTaskFormFieldTaskFormProp
       .finally(() => setIsLoading(false));
   };
 
-  const handleSetEmptyForm = () => setTaskEntries(TASK_FORM_ENTRIES);
+  const actionClickCreateTask = () => {
+    const { isValid, invalidInputNames } = validateFormField();
+    if (!isValid) {
+      const invalidInputEntries: Record<string, unknown> = {};
+      invalidInputNames.forEach((key: string) => {
+        invalidInputEntries[key] = {
+          ...taskEntries[key as keyof TaskFormField],
+          errorMessage: `${key} field is required!`,
+        };
+      });
+
+      setTaskEntries((prev: TaskFormField) => ({
+        ...prev,
+        ...invalidInputEntries,
+      }));
+      return;
+    }
+
+    handleSubmitCreateTaskForm();
+  };
+
+  const handleSetEmptyForm = () => {
+    setTaskEntries({
+      name: {
+        value: '',
+        errorMessage: '',
+        required: true,
+      },
+      description: {
+        value: '',
+        errorMessage: '',
+        required: true,
+      },
+      priority: {
+        value: TaskPriorityEnum.MEDIUM,
+        errorMessage: '',
+        required: true,
+      },
+      difficulty: {
+        value: TaskDifficultyEnum.MEDIUM,
+        errorMessage: '',
+        required: true,
+      },
+      schedule: {
+        value: dayjs().toDate(),
+        errorMessage: '',
+        required: true,
+      },
+      deadline: {
+        value: undefined,
+        errorMessage: '',
+      },
+      prerequisites: {
+        value: [],
+        errorMessage: '',
+      },
+      subTask: {
+        value: [],
+        errorMessage: '',
+      },
+      isHabit: {
+        value: false,
+        errorMessage: '',
+      },
+    });
+  };
 
   return {
     isLoading,
@@ -115,8 +211,9 @@ export const useCreateTaskForm = ({ onCreateTask }: UseTaskFormFieldTaskFormProp
     handleChangeSelectField,
     handleChangeDateTimeField,
     handleChangeRadioField,
-    handleSubmitCreateTaskForm,
+    handleOnBlurField,
     actionAddSubTask,
     actionRemoveSubTask,
+    actionClickCreateTask,
   };
 };

@@ -5,15 +5,15 @@ import axios from 'Clients/axios';
 import { TaskDifficultyEnum, TaskPriorityEnum } from 'Shared/Types/Task';
 
 export interface EditTaskPayload {
-  name?: string;
-  description?: string;
+  name: string;
+  description: string;
   deadline?: Date;
-  schedule?: Date;
+  schedule: Date;
   // prerequisites: []; TODO: Add prerequisites
   subTask?: string[];
   isHabit?: boolean;
-  difficulty?: TaskDifficultyEnum;
-  priority?: TaskPriorityEnum;
+  difficulty: TaskDifficultyEnum;
+  priority: TaskPriorityEnum;
 }
 
 export const editTask = async (taskId: string, payload: EditTaskPayload) => {

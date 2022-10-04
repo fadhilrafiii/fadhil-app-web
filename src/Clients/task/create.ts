@@ -8,12 +8,12 @@ export interface CreateTaskTaskPayload {
   name: string;
   description: string;
   deadline?: Date;
-  schedule?: Date;
+  schedule: Date;
   // prerequisites: []; TODO: Add prerequisites
   subTask: string[];
   isHabit?: boolean;
-  difficulty?: TaskDifficultyEnum;
-  priority?: TaskPriorityEnum;
+  difficulty: TaskDifficultyEnum;
+  priority: TaskPriorityEnum;
 }
 
 export const createTask = async (payload: CreateTaskTaskPayload) => {

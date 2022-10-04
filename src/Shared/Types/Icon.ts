@@ -1,8 +1,10 @@
 export enum IconName {
   Add = 'Add',
   Agenda = 'Agenda',
-  ArrowDropDown = 'ArrowDropDown',
-  ArrowDropUp = 'ArrowDropUp',
+  ArrowDown = 'ArrowDown',
+  ArrowLeft = 'ArrowLeft',
+  ArrowRight = 'ArrowRight',
+  ArrowUp = 'ArrowUp',
   Chat = 'Chat',
   Close = 'Close',
   Exclamation = 'Exclamation',

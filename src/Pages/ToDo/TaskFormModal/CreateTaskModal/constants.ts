@@ -1,3 +1,6 @@
+import dayjs from 'Shared/Helpers/datetime';
+import { TaskDifficultyEnum, TaskPriorityEnum } from 'Shared/Types/Task';
+
 import { TaskFormField } from '../types';
 
 export const TASK_FORM_ENTRIES: TaskFormField = {
@@ -12,20 +15,21 @@ export const TASK_FORM_ENTRIES: TaskFormField = {
     required: true,
   },
   priority: {
-    value: undefined,
+    value: TaskPriorityEnum.MEDIUM,
     errorMessage: '',
     required: true,
   },
-  deadline: {
-    value: undefined,
-    errorMessage: '',
-  },
   difficulty: {
-    value: undefined,
+    value: TaskDifficultyEnum.MEDIUM,
     errorMessage: '',
     required: true,
   },
   schedule: {
+    value: dayjs().toDate(),
+    errorMessage: '',
+    required: true,
+  },
+  deadline: {
     value: undefined,
     errorMessage: '',
   },
