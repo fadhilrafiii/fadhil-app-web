@@ -19,9 +19,8 @@ export const getDatesInMonth = (currentDate: Dayjs) => {
 
   let date = lastDayOfPreviousMonth - firstDayOfTheMonth + 1;
   for (let day = 0; day < 7; day++) {
-    firstWeek.push(date++);
-
     if (date > lastDayOfPreviousMonth) date = 1;
+    firstWeek.push(date++);
   }
   monthDate.push(firstWeek);
 

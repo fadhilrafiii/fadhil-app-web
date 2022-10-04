@@ -4,7 +4,7 @@ import { Dayjs } from 'dayjs';
 
 import { DAYS } from 'Shared/Constants/DateTime';
 
-import { getDatesInMonth } from '../utils';
+import { getDatesInMonth } from './utils';
 
 import styles from './index.module.css';
 

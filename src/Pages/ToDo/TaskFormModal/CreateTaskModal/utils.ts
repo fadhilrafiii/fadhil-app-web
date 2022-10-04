@@ -97,7 +97,6 @@ export const useCreateTaskForm = ({ onCreateTask }: UseTaskFormFieldTaskFormProp
 
   const validateFormField = () => {
     const keys: string[] = Object.keys(taskEntries);
-    console.log('keys', keys);
     const invalidInputNames = keys.filter((key: string) => {
       const entry = taskEntries[key as keyof TaskFormField];
 
