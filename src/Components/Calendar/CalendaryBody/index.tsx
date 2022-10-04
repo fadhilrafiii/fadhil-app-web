@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 
 import { Dayjs } from 'dayjs';
 
-import { DAYS } from 'Shared/Contants/DateTime';
+import { DAYS } from 'Shared/Constants/DateTime';
 
 import { getDatesInMonth } from '../utils';
 

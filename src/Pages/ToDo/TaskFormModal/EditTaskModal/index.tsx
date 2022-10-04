@@ -11,7 +11,7 @@ import {
   TASK_DIFFICULTY_OPTIONS,
   TASK_PRIORITY_OPTIONS,
   TASK_TYPE_OPTIONS,
-} from 'Shared/Contants/Task';
+} from 'Shared/Constants/Task';
 import { OptionValue } from 'Shared/Types/Option';
 import { Task } from 'Shared/Types/Task';
 

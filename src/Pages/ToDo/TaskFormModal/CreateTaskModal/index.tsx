@@ -12,7 +12,7 @@ import {
   TASK_DIFFICULTY_OPTIONS,
   TASK_PRIORITY_OPTIONS,
   TASK_TYPE_OPTIONS,
-} from 'Shared/Contants/Task';
+} from 'Shared/Constants/Task';
 import { Colors } from 'Shared/Types/Colors';
 import { IconName } from 'Shared/Types/Icon';
 import { OptionValue } from 'Shared/Types/Option';

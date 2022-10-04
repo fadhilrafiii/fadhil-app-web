@@ -6,7 +6,7 @@ import Select from 'Components/Select';
 import { useAppDispatch } from 'Redux/hooks';
 import { setSection } from 'Redux/Slices/taskSlice';
 
-import { TASK_SECTION_OPTIONS, TASK_SECTION_OPTIONS_LABEL } from 'Shared/Contants/Task';
+import { TASK_SECTION_OPTIONS, TASK_SECTION_OPTIONS_LABEL } from 'Shared/Constants/Task';
 import { OptionValue } from 'Shared/Types/Option';
 import { TaskSectionEnum } from 'Shared/Types/Task';
 

@@ -11,7 +11,7 @@ import { setAuthError, unsetUser, userSelector } from 'Redux/Slices/userSlice';
 
 import { logoutAPI } from 'Clients/auth/logout';
 
-import { HIDE_NAVBAR_ROUTES } from 'Shared/Contants/Routes';
+import { HIDE_NAVBAR_ROUTES } from 'Shared/Constants/Routes';
 import { Colors } from 'Shared/Types/Colors';
 import { IconName } from 'Shared/Types/Icon';
 

@@ -5,7 +5,7 @@ import { showSnackbar } from 'Redux/Slices/snackbarSlice';
 
 import { createTask, CreateTaskTaskPayload } from 'Clients/task/create';
 
-import { TASK_TYPE_OPTIONS } from 'Shared/Contants/Task';
+import { TASK_TYPE_OPTIONS } from 'Shared/Constants/Task';
 import dayjs from 'Shared/Helpers/datetime';
 import { OptionValue } from 'Shared/Types/Option';
 

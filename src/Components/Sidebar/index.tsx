@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import Icon from 'Components/Icon';
 
-import { HIDE_SIDEBAR_ROUTES, ROUTES } from 'Shared/Contants/Routes';
+import { HIDE_SIDEBAR_ROUTES, ROUTES } from 'Shared/Constants/Routes';
 import { RouteType } from 'Shared/Types/Route';
 
 import styles from './index.module.css';

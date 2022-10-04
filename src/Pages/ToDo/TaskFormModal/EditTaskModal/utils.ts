@@ -4,7 +4,7 @@ import { showSnackbar } from 'Redux/Slices/snackbarSlice';
 
 import { editTask, EditTaskPayload } from 'Clients/task/edit';
 
-import { TASK_TYPE_OPTIONS } from 'Shared/Contants/Task';
+import { TASK_TYPE_OPTIONS } from 'Shared/Constants/Task';
 import { OptionValue } from 'Shared/Types/Option';
 import { Task } from 'Shared/Types/Task';
 

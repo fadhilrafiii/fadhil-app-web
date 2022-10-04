@@ -4,7 +4,7 @@ import Button, { ButtonTheme, ButtonType } from 'Components/Button';
 import Icon from 'Components/Icon';
 import ConfirmationModal, { ConfirmationModalType } from 'Components/Modal/ConfirmationModal';
 
-import { TASK_SECTION_OPTIONS_LABEL } from 'Shared/Contants/Task';
+import { TASK_SECTION_OPTIONS_LABEL } from 'Shared/Constants/Task';
 import { IconName } from 'Shared/Types/Icon';
 import { Task } from 'Shared/Types/Task';
 
