@@ -33,8 +33,8 @@
   --padding-xxxl: 32px;
 
   /* box-shadow */
-  --box-shadow-s: 1px 1px 4px -1px rgb(135, 135, 135);
-  --box-shadow-m: 1px 2px 8px -2px rgb(135, 135, 135);
+  --box-shadow-s: 1px 1px 2px -0.5px rgb(54, 54, 54);
+  --box-shadow-m: 1px 2px 8px -2px rgb(54, 54, 54);
   --box-shadow-dark: 2px 2px 8px -1px var(--color-secondary);
 }
 

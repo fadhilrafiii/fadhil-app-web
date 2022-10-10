@@ -2,17 +2,18 @@ import { AxiosError, AxiosResponse } from 'axios';
 
 import axios from 'Clients/axios';
 
-import { TaskSectionEnum } from 'Shared/Types/Task';
-
-interface GetTasksFilter extends Record<string, string> {
-  type: TaskSectionEnum;
+interface GetTaskParams {
+  month?: number;
+  year?: number;
 }
 
-export const getTasks = async (filter?: GetTasksFilter) => {
+export const getTasks = async ({ month, year }: GetTaskParams) => {
   try {
-    const query = new URLSearchParams(filter).toString();
+    const querystring = new URLSearchParams();
+    if (month && month >= 0) querystring.set('month', month.toString());
+    if (year) querystring.set('year', year.toString());
 
-    const res = await axios.get(`/activities?${query}`);
+    const res = await axios.get(`/activities?${querystring}`);
 
     return res.data;
   } catch (err) {

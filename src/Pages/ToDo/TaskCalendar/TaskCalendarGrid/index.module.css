@@ -1,0 +1,20 @@
+.taskChipContainer {
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: var(--padding-s);
+}
+
+.taskChip {
+  border-radius: 2px;
+  background-color: var(--color-primary);
+  color: var(--color-light);
+  font-size: 12.5px;
+  padding: var(--padding-s) var(--padding-m);
+  cursor: pointer;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-shadow: var(--box-shadow-s);
+}

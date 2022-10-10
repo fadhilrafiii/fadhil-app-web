@@ -12,42 +12,54 @@ interface CalendarHeaderProps {
   currentDate: Dayjs;
   setMonth: (month: number) => void;
   setYear: (year: number) => void;
+  onMonthChange?: () => void;
+  onYearChange?: () => void;
 }
 
-const CalendarHeader = ({ currentDate, setMonth, setYear }: CalendarHeaderProps) => {
+const CalendarHeader = ({
+  currentDate,
+  setMonth,
+  setYear,
+  onMonthChange = () => null,
+  onYearChange = () => null,
+}: CalendarHeaderProps) => {
+  const actionClickNextMonth = () => {
+    setMonth(currentDate.month() + 1);
+    onMonthChange();
+  };
+
+  const actionClickPrevMonth = () => {
+    setMonth(currentDate.month() - 1);
+    onMonthChange();
+  };
+
+  const actionClickNextYear = () => {
+    setMonth(currentDate.month() + 1);
+    onYearChange();
+  };
+
+  const actionClickPrevYear = () => {
+    setYear(currentDate.year() - 1);
+    onYearChange();
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.yearContainer}>
-        <span
-          className={styles.arrowBtn}
-          role="button"
-          onClick={() => setYear(currentDate.year() - 1)}
-        >
+        <span className={styles.arrowBtn} role="button" onClick={actionClickPrevYear}>
           <Icon name={IconName.ArrowLeft} />
         </span>
         <h4 className={styles.headerText}>{currentDate.format('YYYY')}</h4>
-        <span
-          className={styles.arrowBtn}
-          role="button"
-          onClick={() => setYear(currentDate.year() + 1)}
-        >
+        <span className={styles.arrowBtn} role="button" onClick={actionClickNextYear}>
           <Icon name={IconName.ArrowRight} />
         </span>
       </div>
       <div className={styles.monthContainer}>
-        <span
-          className={styles.arrowBtn}
-          role="button"
-          onClick={() => setMonth(currentDate.month() - 1)}
-        >
+        <span className={styles.arrowBtn} role="button" onClick={actionClickPrevMonth}>
           <Icon name={IconName.ArrowLeft} />
         </span>
         <h4 className={styles.headerText}>{currentDate.format('MMMM')}</h4>
-        <span
-          className={styles.arrowBtn}
-          role="button"
-          onClick={() => setMonth(currentDate.month() + 1)}
-        >
+        <span className={styles.arrowBtn} role="button" onClick={actionClickNextMonth}>
           <Icon name={IconName.ArrowRight} />
         </span>
       </div>

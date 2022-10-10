@@ -1,28 +1,42 @@
 import React, { useCallback, useMemo, useState } from 'react';
 
+import { Dayjs } from 'dayjs';
+
 import Button, { ButtonTheme, ButtonType } from 'Components/Button';
 import Icon from 'Components/Icon';
 import ConfirmationModal, { ConfirmationModalType } from 'Components/Modal/ConfirmationModal';
 
 import { TASK_SECTION_OPTIONS_LABEL } from 'Shared/Constants/Task';
+import dayjs from 'Shared/Helpers/datetime';
 import { IconName } from 'Shared/Types/Icon';
 import { Task } from 'Shared/Types/Task';
 
 import ChooseSectionModal from './ChooseSectionModal';
-import AllTask from './TaskCalendar';
+import TaskCalendar from './TaskCalendar';
 import CreateTaskModal from './TaskFormModal/CreateTaskModal';
 import EditTaskModal from './TaskFormModal/EditTaskModal';
 import TaskSlider from './TaskSlider';
-import { useDeleteTask, useTaskList } from './utils';
+import { getTasksByDate, useCalendarTaskList, useDeleteTask, useSectionTaskList } from './utils';
 
 import styles from './index.module.css';
 
 const ToDo = () => {
-  const { section, tasks, sectionTasks, triggerFetchTasks } = useTaskList();
+  const [currentDate, setCurrentDate] = useState<Dayjs>(dayjs());
+  const { section, sectionTasks, triggerFetch: triggerFetchSectionTasks } = useSectionTaskList();
+  const { calendarTasks, triggerFetch: triggerFetchCalendarTasks } = useCalendarTaskList({
+    month: currentDate.month(),
+    year: currentDate.year(),
+  });
   const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] = useState(false);
   const [isEditTaskModalOpen, setIsEditTaskModalOpen] = useState(false);
   const [isChooseSectionTaskModalOpen, setIsChooseSectionTaskModalOpen] = useState(false);
   const [openedTaskId, setOpenedTaskId] = useState<string | null>(null);
+
+  const setCurrentYear = (year: number) => setCurrentDate((prev: Dayjs) => prev.year(year));
+
+  const setCurrentMonth = (month: number) => {
+    setCurrentDate((prev: Dayjs) => prev.month(month));
+  };
 
   const actionOpenChooseSectionTaskModal = () => setIsChooseSectionTaskModalOpen(true);
   const actionCloseChooseSectionTaskModal = () => setIsChooseSectionTaskModalOpen(false);
@@ -35,20 +49,44 @@ const ToDo = () => {
     setIsEditTaskModalOpen(false);
     setOpenedTaskId(null);
   };
+
   const onChangeDataCallback = () => {
-    triggerFetchTasks();
+    triggerFetchSectionTasks();
+    triggerFetchCalendarTasks();
     actionCloseCreateTaskModal();
   };
+
+  const onMonthOrYearChange = () => triggerFetchCalendarTasks();
 
   const actionClickTask = useCallback(async (taskId: string) => {
     setOpenedTaskId(taskId);
     setIsEditTaskModalOpen(true);
   }, []);
 
-  const openedTask = useMemo(
-    () => tasks.find((task: Task) => task._id === openedTaskId),
-    [openedTaskId, tasks],
-  );
+  const openedTask = useMemo(() => {
+    const currentMonthYear = `${currentDate.month()}-${currentDate.year()}`;
+    return (
+      sectionTasks.find((task: Task) => task._id === openedTaskId) ||
+      (calendarTasks[currentMonthYear]?.length > 0 &&
+        calendarTasks[currentMonthYear].find((task: Task) => task._id === openedTaskId))
+    );
+  }, [calendarTasks, currentDate, openedTaskId, sectionTasks]);
+
+  const currentMonth = currentDate.month();
+  const currentYear = currentDate.year();
+  const currentCalendarTasks = useMemo(() => {
+    const currentMonthTasks = calendarTasks[`${currentMonth}-${currentYear}`] || [];
+    const prevMonthTasks = calendarTasks[`${(currentMonth - 1) % 12}-${currentYear}`] || [];
+    const nextMonthTasks = calendarTasks[`${(currentMonth + 1) % 12}-${currentYear}`] || [];
+
+    const tasksByDate = getTasksByDate([
+      ...prevMonthTasks,
+      ...currentMonthTasks,
+      ...nextMonthTasks,
+    ]);
+
+    return tasksByDate;
+  }, [calendarTasks, currentMonth, currentYear]);
 
   const {
     isLoading: isLoadingDeleteTask,
@@ -92,7 +130,13 @@ const ToDo = () => {
             tasks={sectionTasks}
             onClickTask={actionClickTask}
           />
-          <AllTask />
+          <TaskCalendar
+            currentDate={currentDate}
+            setMonth={setCurrentMonth}
+            setYear={setCurrentYear}
+            onMonthOrYearChange={onMonthOrYearChange}
+            currentData={currentCalendarTasks}
+          />
         </div>
       </div>
       <CreateTaskModal
