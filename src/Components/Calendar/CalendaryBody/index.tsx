@@ -5,23 +5,26 @@ import { Dayjs } from 'dayjs';
 import { DAYS } from 'Shared/Constants/DateTime';
 import dayjs from 'Shared/Helpers/datetime';
 
-import { getDatesInMonth } from './utils';
+import { getDatesInMonth, getGridDate } from './utils';
 
 import styles from './index.module.css';
 
 interface CalendarBodyProps<T> {
-  gridComponent: FunctionComponent<{ data: T[] }>;
+  actionClickData: (id: string) => void;
+  gridComponent: FunctionComponent<{ data: T[]; actionClickData: (id: string) => void }>;
   data: Record<string, T[]>;
   currentDate: Dayjs;
 }
 
 const CalendarBody = <T,>({
+  actionClickData,
   currentDate,
   data,
   gridComponent: CalendarGridComponent,
 }: CalendarBodyProps<T>) => {
   const dates = useMemo(() => getDatesInMonth(currentDate), [currentDate]);
   const currentMonth = currentDate.month();
+  const currentYear = currentDate.year();
 
   return (
     <table className={styles.calendarDates}>
@@ -36,20 +39,17 @@ const CalendarBody = <T,>({
         {dates.map((week: Array<number>, weekIdx: number) => (
           <tr key={weekIdx}>
             {week.map((date: number, dateIdx: number) => {
-              let gridDate;
-              if (weekIdx === 0 && date > 7) {
-                gridDate = dayjs(currentDate)
-                  .date(date)
-                  .month(currentMonth - 1)
-                  .format('YYYY-MM-DD');
-              } else if (weekIdx === dates.length - 1 && date < 7) {
-                gridDate = dayjs(currentDate)
-                  .date(date)
-                  .month(currentMonth + 1)
-                  .format('YYYY-MM-DD');
-              } else {
-                gridDate = dayjs(currentDate).date(date).format('YYYY-MM-DD');
-              }
+              const gridDate = getGridDate(
+                currentDate,
+                currentMonth,
+                date,
+                weekIdx,
+                weekIdx === dates.length - 1,
+              );
+
+              const dateClasses = [styles.dateLabel];
+              if (dayjs(`${currentYear}-${currentMonth + 1}-${date}`, 'YYYY-M-D').isToday())
+                dateClasses.push(styles.todayDate);
 
               return (
                 <td
@@ -60,8 +60,8 @@ const CalendarBody = <T,>({
                       : ''
                   }
                 >
-                  <CalendarGridComponent data={data[gridDate]} />
-                  <span className={styles.dateLabel}>{date}</span>
+                  <CalendarGridComponent data={data[gridDate]} actionClickData={actionClickData} />
+                  <span className={dateClasses.join(' ')}>{date}</span>
                 </td>
               );
             })}

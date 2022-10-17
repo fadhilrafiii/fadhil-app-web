@@ -30,6 +30,9 @@
   top: 0;
   right: 0;
   padding: var(--padding-s);
+  font-size: 13px;
+  margin-top: 2px;
+  margin-right: 2px;
 }
 
 .dates td {
@@ -43,4 +46,9 @@
 
 .notThisMonthDate {
   opacity: .5;
+}
+
+.todayDate {
+  background-color: var(--color-warning);
+  border-radius: 100%;
 }

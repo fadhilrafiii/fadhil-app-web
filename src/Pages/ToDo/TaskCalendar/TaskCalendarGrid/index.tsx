@@ -6,15 +6,19 @@ import styles from './index.module.css';
 
 interface TaskCalendarGrid {
   data: Task[];
+  actionClickData: (taskId: string) => void;
 }
 
-const TaskCalendarGrid: React.FC<{ data: Task[] }> = ({ data }: TaskCalendarGrid) => {
+const TaskCalendarGrid: React.FC<{ data: Task[]; actionClickData: (taskId: string) => void }> = ({
+  actionClickData,
+  data,
+}: TaskCalendarGrid) => {
   if (!data?.length) return null;
 
   return (
     <div className={styles.taskChipContainer}>
       {data.map((task: Task) => (
-        <div key={task._id} className={styles.taskChip}>
+        <div key={task._id} className={styles.taskChip} onClick={() => actionClickData(task._id)}>
           {task.name}
         </div>
       ))}

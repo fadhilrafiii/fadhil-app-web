@@ -31,7 +31,7 @@ const Sidebar = React.memo(() => {
       <div className={styles.header}>
         <img width={42} src="/logo-white.png" alt="Logo" />
         <div>
-          <h2>Fadhil</h2>
+          <h2>Daily</h2>
           <h4>Super App</h4>
         </div>
       </div>

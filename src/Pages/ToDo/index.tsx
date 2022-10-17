@@ -131,6 +131,7 @@ const ToDo = () => {
             onClickTask={actionClickTask}
           />
           <TaskCalendar
+            actionClickTask={actionClickTask}
             currentDate={currentDate}
             setMonth={setCurrentMonth}
             setYear={setCurrentYear}

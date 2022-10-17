@@ -11,6 +11,7 @@ import TaskCalendarGrid from './TaskCalendarGrid';
 import styles from './index.module.css';
 
 interface TaskCalendarProps {
+  actionClickTask: (taskId: string) => void;
   currentData: Record<string, Task[]>;
   currentDate: Dayjs;
   setMonth: (month: number) => void;
@@ -19,6 +20,7 @@ interface TaskCalendarProps {
 }
 
 const TaskCalendar = ({
+  actionClickTask,
   currentData,
   currentDate,
   setMonth,
@@ -29,6 +31,7 @@ const TaskCalendar = ({
     <div className={styles.container}>
       <h3>Task Calendar</h3>
       <Calendar<Task>
+        actionClickData={actionClickTask}
         currentDate={currentDate}
         setMonth={setMonth}
         setYear={setYear}

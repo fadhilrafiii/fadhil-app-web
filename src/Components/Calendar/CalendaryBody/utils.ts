@@ -44,3 +44,28 @@ export const getDatesInMonth = (currentDate: Dayjs) => {
 
   return monthDate;
 };
+
+export const getGridDate = (
+  currentDate: Dayjs,
+  currentMonth: number,
+  date: number,
+  weekIdx: number,
+  isLastWeek?: boolean,
+) => {
+  let gridDate;
+  if (weekIdx === 0 && date > 7) {
+    gridDate = dayjs(currentDate)
+      .date(date)
+      .month(currentMonth - 1)
+      .format('YYYY-MM-DD');
+  } else if (isLastWeek && date < 7) {
+    gridDate = dayjs(currentDate)
+      .date(date)
+      .month(currentMonth + 1)
+      .format('YYYY-MM-DD');
+  } else {
+    gridDate = dayjs(currentDate).date(date).format('YYYY-MM-DD');
+  }
+
+  return gridDate;
+};

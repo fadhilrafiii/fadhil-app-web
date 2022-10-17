@@ -8,16 +8,18 @@ import CalendarBody from './CalendaryBody';
 import styles from './index.module.css';
 
 interface CalendarProps<T> {
+  actionClickData: (id: string) => void;
   currentDate: Dayjs;
   data: Record<string, T[]>;
   setMonth: (month: number) => void;
   setYear: (year: number) => void;
-  gridComponent: FunctionComponent<{ data: T[] }>;
+  gridComponent: FunctionComponent<{ data: T[]; actionClickData: (id: string) => void }>;
   onMonthChange?: () => void;
   onYearChange?: () => void;
 }
 
 const Calendar = <T,>({
+  actionClickData,
   currentDate,
   data,
   setMonth,
@@ -35,7 +37,12 @@ const Calendar = <T,>({
         onMonthChange={onMonthChange}
         onYearChange={onYearChange}
       />
-      <CalendarBody<T> currentDate={currentDate} gridComponent={gridComponent} data={data} />
+      <CalendarBody<T>
+        actionClickData={actionClickData}
+        currentDate={currentDate}
+        gridComponent={gridComponent}
+        data={data}
+      />
     </div>
   );
 };
