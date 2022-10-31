@@ -42,7 +42,11 @@ const Login = () => {
           await dispatch(setUser(res.data));
         })
         .catch(async (err: AxiosResponse) => {
-          await dispatch(setAuthError(err.data.message));
+          await dispatch(
+            setAuthError(
+              err?.data?.message || 'An error occured! We are working on this. Please try again!',
+            ),
+          );
         });
     },
     [dispatch, loginData],
